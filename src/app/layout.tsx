@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Urbanist } from "next/font/google";
 import "./globals.css";
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
+const urbanist = Urbanist({
+  subsets: ["latin"],
+  variable: "--font-urbanist",
+  weight: ["300", "400", "500", "600", "700"],
+});
 
 export const metadata: Metadata = {
-  title: "Termo de Autorização de Uso de Imagem — LPX Marketing",
+  title: "Contrato de Licença e Cessão de Uso de Imagem — LPX",
   description:
-    "Assine o Termo de Autorização de Uso de Imagem da LPX Marketing de forma rápida e segura.",
+    "Assine o Contrato de Licença e Cessão de Uso de Imagem da LPX Consultoria e Intermediação Ltda.",
 };
 
 export default function RootLayout({
@@ -16,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR" className={`${geist.variable} h-full`}>
+    <html lang="pt-BR" className={`${urbanist.variable} h-full`}>
       <body className="min-h-full antialiased">{children}</body>
     </html>
   );

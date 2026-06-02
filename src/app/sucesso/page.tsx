@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default async function Sucesso({
   searchParams,
 }: {
@@ -7,23 +9,22 @@ export default async function Sucesso({
   const nome = params.nome || "";
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] flex items-center justify-center p-6">
+    <main className="min-h-screen bg-white flex items-center justify-center p-6">
       <div className="max-w-md w-full text-center space-y-8">
-        {/* Logo */}
-        <div className="inline-flex flex-col items-center gap-1">
-          <span className="text-2xl font-bold tracking-[0.3em] text-[#C9A84C]">
-            LPX
-          </span>
-          <span className="text-xs tracking-[0.5em] text-[#555] uppercase">
-            Marketing
-          </span>
+        <div className="flex justify-center">
+          <Image
+            src="/LPX_LOGO_L4.png"
+            alt="LPX"
+            width={110}
+            height={44}
+            className="h-11 w-auto"
+          />
         </div>
 
-        {/* Check icon */}
         <div className="flex justify-center">
-          <div className="w-20 h-20 rounded-full bg-[#C9A84C]/10 border border-[#C9A84C]/30 flex items-center justify-center">
+          <div className="w-20 h-20 rounded-full bg-[#0200FC]/8 border border-[#0200FC]/20 flex items-center justify-center">
             <svg
-              className="w-10 h-10 text-[#C9A84C]"
+              className="w-10 h-10 text-[#0200FC]"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -38,29 +39,29 @@ export default async function Sucesso({
           </div>
         </div>
 
-        {/* Message */}
         <div className="space-y-3">
-          <h1 className="text-2xl font-bold text-white">Termo Assinado!</h1>
+          <h1 className="text-2xl font-bold text-[#16171C]">
+            Contrato Assinado!
+          </h1>
           {nome && (
-            <p className="text-[#C9A84C] font-medium">Obrigado(a), {nome}.</p>
+            <p className="text-[#0200FC] font-medium">Obrigado(a), {nome}.</p>
           )}
-          <p className="text-[#666] text-sm leading-relaxed">
-            Seu Termo de Autorização de Uso de Imagem foi registrado com
-            sucesso. Uma cópia em PDF foi enviada para o seu e-mail.
+          <p className="text-[#16171C]/50 text-sm leading-relaxed">
+            O contrato foi registrado com sucesso. Uma cópia em PDF foi enviada
+            para o seu e-mail.
           </p>
         </div>
 
-        {/* Checklist */}
-        <div className="bg-[#0f0f0f] border border-[#1a1a1a] rounded-2xl p-6 text-sm space-y-3 text-left">
+        <div className="bg-[#f8f8fc] border border-[#16171C]/8 rounded-2xl p-6 text-sm space-y-3 text-left">
           {[
             "Assinatura registrada com sucesso",
-            "Comprovante enviado por e-mail",
-            "Documento arquivado com segurança",
+            "Contrato arquivado com segurança",
+            "Cópia em PDF enviada por e-mail",
           ].map((item) => (
             <div key={item} className="flex items-center gap-3">
-              <span className="w-5 h-5 rounded-full bg-[#C9A84C]/15 flex items-center justify-center flex-shrink-0">
+              <span className="w-5 h-5 rounded-full bg-[#0200FC]/10 flex items-center justify-center flex-shrink-0">
                 <svg
-                  className="w-3 h-3 text-[#C9A84C]"
+                  className="w-3 h-3 text-[#0200FC]"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -73,13 +74,13 @@ export default async function Sucesso({
                   />
                 </svg>
               </span>
-              <span className="text-[#777]">{item}</span>
+              <span className="text-[#16171C]/70">{item}</span>
             </div>
           ))}
         </div>
 
-        <p className="text-xs text-[#333]">
-          LPX Marketing · Documento gerado eletronicamente
+        <p className="text-xs text-[#16171C]/30">
+          LPX Consultoria e Intermediação Ltda · CNPJ: 63.732.387/0001-90
         </p>
       </div>
     </main>
