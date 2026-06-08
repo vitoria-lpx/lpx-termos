@@ -90,10 +90,8 @@ export async function POST(request: NextRequest) {
 
     const fileName = `contrato-lpx-${nome.trim().replace(/\s+/g, "-").toLowerCase()}.pdf`;
 
-    // TODO: após verificar domínio lpxmarketing.com no Resend, substituir por:
-    // const recipients = ["leo@lpxmarketing.com", "vitoria@lpxmarketing.com", email.trim()];
-    // const uniqueRecipients = [...new Set(recipients)];
-    const uniqueRecipients = ["vitoria@lpxmarketing.com"];
+    const recipients = ["leo@lpxmarketing.com", "vitoria@lpxmarketing.com", email.trim()];
+    const uniqueRecipients = [...new Set(recipients)];
     console.log("[Resend] enviando para:", uniqueRecipients);
 
     const { data: emailData, error: emailError } = await resend.emails.send({
