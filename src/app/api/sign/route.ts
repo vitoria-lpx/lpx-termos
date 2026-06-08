@@ -431,9 +431,8 @@ function buildEmailHtml({ nome, dataHoraCompleta }: { nome: string; dataHoraComp
     body { font-family: Arial, sans-serif; background: #f0f0f2; }
     .wrap { max-width: 580px; margin: 32px auto; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,.08); }
     .top-bar { height: 4px; background: #0200FC; }
-    .header { background: #16171C; padding: 32px 40px; text-align: center; }
-    .logo { font-size: 22px; font-weight: 700; letter-spacing: 8px; color: #DEDEDC; }
-    .logo-sub { font-size: 10px; letter-spacing: 6px; color: #555; margin-top: 5px; text-transform: uppercase; }
+    .header { background: #ffffff; padding: 24px 40px; text-align: center; border-bottom: 1px solid #f0f0f0; }
+    .logo-img { height: 36px; width: auto; display: block; margin: 0 auto; }
     .body { padding: 40px; }
     .body h2 { color: #111; font-size: 18px; margin-bottom: 16px; }
     .body p { color: #555; font-size: 14px; line-height: 1.7; margin-bottom: 14px; }
@@ -451,8 +450,7 @@ function buildEmailHtml({ nome, dataHoraCompleta }: { nome: string; dataHoraComp
   <div class="wrap">
     <div class="top-bar"></div>
     <div class="header">
-      <div class="logo">LPX</div>
-      <div class="logo-sub">Consultoria e Intermediação</div>
+      <img src="https://lpx-termos.vercel.app/LPX_LOGO_L4.png" alt="LPX Marketing" class="logo-img" />
     </div>
     <div class="body">
       <h2>Contrato Assinado com Sucesso</h2>
@@ -466,7 +464,7 @@ function buildEmailHtml({ nome, dataHoraCompleta }: { nome: string; dataHoraComp
         <li><span class="check">✓</span> Contrato arquivado com segurança</li>
         <li><span class="check">✓</span> Documento PDF em anexo</li>
       </ul>
-      <p>Em caso de dúvidas, entre em contato pelo e-mail <a href="mailto:contato@lpxmarketing.com">contato@lpxmarketing.com</a>.</p>
+      <p>Em caso de dúvidas, entre em contato pelo e-mail <a href="mailto:agencia@lpxmarketing.com">agencia@lpxmarketing.com</a>.</p>
     </div>
     <div class="footer">
       <p>LPX Consultoria e Intermediação Ltda · CNPJ: 63.732.387/0001-90</p>
