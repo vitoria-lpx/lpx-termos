@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 function formatCpf(value: string): string {
@@ -12,6 +12,14 @@ function formatCpf(value: string): string {
   return `${digits.slice(0, 3)}.${digits.slice(3, 6)}.${digits.slice(6, 9)}-${digits.slice(9, 11)}`;
 }
 
+const FONTS = [
+  { id: "dancing", label: "Dancing Script", family: "'Dancing Script', cursive", weight: "600", size: "42px" },
+  { id: "greatvibes", label: "Great Vibes", family: "'Great Vibes', cursive", weight: "400", size: "46px" },
+  { id: "parisienne", label: "Parisienne", family: "'Parisienne', cursive", weight: "400", size: "38px" },
+] as const;
+
+type FontId = typeof FONTS[number]["id"];
+
 export default function TermForm() {
   const [nome, setNome] = useState("");
   const [cpf, setCpf] = useState("");
@@ -19,114 +27,50 @@ export default function TermForm() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [hasSigned, setHasSigned] = useState(false);
+  const [selectedFont, setSelectedFont] = useState<FontId>("dancing");
 
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const isDrawing = useRef(false);
+  const hiddenCanvasRef = useRef<HTMLCanvasElement>(null);
   const router = useRouter();
 
-  const initCanvas = useCallback(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-    const dpr = window.devicePixelRatio || 1;
-    const rect = canvas.getBoundingClientRect();
-    canvas.width = rect.width * dpr;
-    canvas.height = rect.height * dpr;
-    ctx.scale(dpr, dpr);
-    ctx.strokeStyle = "#16171C";
-    ctx.lineWidth = 2;
-    ctx.lineCap = "round";
-    ctx.lineJoin = "round";
+  useEffect(() => {
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href =
+      "https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Great+Vibes&family=Parisienne&display=swap";
+    document.head.appendChild(link);
+    return () => {
+      document.head.removeChild(link);
+    };
   }, []);
 
-  useEffect(() => {
-    initCanvas();
-  }, [initCanvas]);
+  const captureSignature = async (): Promise<string> => {
+    const font = FONTS.find((f) => f.id === selectedFont)!;
+    const fontStr = `${font.weight} 56px ${font.family}`;
 
-  const getCtx = () => {
-    const canvas = canvasRef.current;
-    return canvas ? canvas.getContext("2d") : null;
-  };
+    try {
+      await document.fonts.load(fontStr, nome);
+    } catch {
+      // proceed anyway
+    }
 
-  const getXY = (
-    canvas: HTMLCanvasElement,
-    clientX: number,
-    clientY: number
-  ) => {
-    const rect = canvas.getBoundingClientRect();
-    return { x: clientX - rect.left, y: clientY - rect.top };
-  };
+    const canvas = hiddenCanvasRef.current;
+    if (!canvas) return "";
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return "";
 
-  // Mouse
-  const onMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    isDrawing.current = true;
-    const { x, y } = getXY(canvas, e.clientX, e.clientY);
-    const ctx = getCtx();
-    if (!ctx) return;
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-  };
+    canvas.width = 480;
+    canvas.height = 120;
 
-  const onMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    if (!isDrawing.current) return;
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const { x, y } = getXY(canvas, e.clientX, e.clientY);
-    const ctx = getCtx();
-    if (!ctx) return;
-    ctx.lineTo(x, y);
-    ctx.stroke();
-    if (!hasSigned) setHasSigned(true);
-  };
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  const onMouseUp = () => {
-    isDrawing.current = false;
-  };
+    ctx.fillStyle = "#16171C";
+    ctx.font = fontStr;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(nome.trim(), canvas.width / 2, canvas.height / 2);
 
-  // Touch
-  const onTouchStart = (e: React.TouchEvent<HTMLCanvasElement>) => {
-    e.preventDefault();
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    isDrawing.current = true;
-    const touch = e.touches[0];
-    const { x, y } = getXY(canvas, touch.clientX, touch.clientY);
-    const ctx = getCtx();
-    if (!ctx) return;
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-  };
-
-  const onTouchMove = (e: React.TouchEvent<HTMLCanvasElement>) => {
-    e.preventDefault();
-    if (!isDrawing.current) return;
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const touch = e.touches[0];
-    const { x, y } = getXY(canvas, touch.clientX, touch.clientY);
-    const ctx = getCtx();
-    if (!ctx) return;
-    ctx.lineTo(x, y);
-    ctx.stroke();
-    if (!hasSigned) setHasSigned(true);
-  };
-
-  const onTouchEnd = () => {
-    isDrawing.current = false;
-  };
-
-  const clearCanvas = () => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = getCtx();
-    if (!ctx) return;
-    const dpr = window.devicePixelRatio || 1;
-    ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr);
-    setHasSigned(false);
+    return canvas.toDataURL("image/png");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -137,14 +81,15 @@ export default function TermForm() {
       return;
     }
 
-    if (!hasSigned) {
-      setError("Por favor, adicione sua assinatura no campo acima.");
+    if (!nome.trim()) {
+      setError("Por favor, preencha seu nome completo.");
       return;
     }
 
-    const assinatura = canvasRef.current?.toDataURL("image/png") ?? "";
     setLoading(true);
     setError("");
+
+    const assinatura = await captureSignature();
 
     try {
       const res = await fetch("/api/sign", {
@@ -156,9 +101,7 @@ export default function TermForm() {
       const data = await res.json();
 
       if (!res.ok) {
-        setError(
-          data.error || "Erro ao processar a assinatura. Tente novamente."
-        );
+        setError(data.error || "Erro ao processar a assinatura. Tente novamente.");
         return;
       }
 
@@ -173,6 +116,8 @@ export default function TermForm() {
   const inputClass =
     "w-full bg-white border border-[#16171C]/15 rounded-xl px-4 py-3 text-[#16171C] placeholder-[#16171C]/30 focus:outline-none focus:border-[#0200FC]/50 focus:ring-1 focus:ring-[#0200FC]/15 transition-colors duration-200";
 
+  const showSignaturePreview = nome.trim().length > 0;
+
   return (
     <div className="bg-[#f8f8fc] border border-[#16171C]/8 rounded-2xl p-8">
       <div className="mb-8">
@@ -180,8 +125,7 @@ export default function TermForm() {
           Assinar Contrato
         </h2>
         <p className="text-sm text-[#16171C]/50">
-          Preencha seus dados e adicione sua assinatura manuscrita para
-          concluir.
+          Preencha seus dados e escolha o estilo da sua assinatura para concluir.
         </p>
       </div>
 
@@ -244,60 +188,75 @@ export default function TermForm() {
           />
         </div>
 
-        {/* Signature canvas */}
-        <div className="space-y-1.5">
-          <div className="flex items-center justify-between">
-            <label className="text-xs font-medium text-[#16171C]/40 uppercase tracking-widest">
-              Assinatura *
-            </label>
-            {hasSigned && (
-              <button
-                type="button"
-                onClick={clearCanvas}
-                className="text-xs text-[#0200FC]/60 hover:text-[#0200FC] transition-colors"
-              >
-                Limpar
-              </button>
-            )}
-          </div>
+        {/* Signature style picker */}
+        <div className="space-y-3">
+          <label className="text-xs font-medium text-[#16171C]/40 uppercase tracking-widest">
+            Assinatura *
+          </label>
 
-          <div className="relative rounded-xl border border-[#16171C]/15 bg-white overflow-hidden">
-            <canvas
-              ref={canvasRef}
-              className="w-full h-[140px] block cursor-crosshair touch-none"
-              onMouseDown={onMouseDown}
-              onMouseMove={onMouseMove}
-              onMouseUp={onMouseUp}
-              onMouseLeave={onMouseUp}
-              onTouchStart={onTouchStart}
-              onTouchMove={onTouchMove}
-              onTouchEnd={onTouchEnd}
-            />
-            {!hasSigned && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none gap-2">
-                <svg
-                  className="w-5 h-5 text-[#16171C]/20"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-                  />
-                </svg>
-                <p className="text-xs text-[#16171C]/25 select-none">
-                  Desenhe sua assinatura aqui
-                </p>
+          {showSignaturePreview ? (
+            <>
+              <p className="text-xs text-[#16171C]/50">
+                Escolha o estilo da sua assinatura:
+              </p>
+              <div className="grid grid-cols-1 gap-3">
+                {FONTS.map((font) => {
+                  const isSelected = selectedFont === font.id;
+                  return (
+                    <button
+                      key={font.id}
+                      type="button"
+                      onClick={() => setSelectedFont(font.id)}
+                      className={[
+                        "w-full bg-white rounded-xl border-2 px-6 py-4 text-left transition-all duration-150 cursor-pointer",
+                        isSelected
+                          ? "border-[#0200FC] shadow-[0_0_0_3px_rgba(2,0,252,0.08)]"
+                          : "border-[#16171C]/10 hover:border-[#16171C]/25",
+                      ].join(" ")}
+                    >
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-[10px] font-medium text-[#16171C]/30 uppercase tracking-widest">
+                          {font.label}
+                        </span>
+                        {isSelected && (
+                          <span className="w-4 h-4 rounded-full bg-[#0200FC] flex items-center justify-center flex-shrink-0">
+                            <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+                              <path d="M1.5 4L3.5 6L6.5 2" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                          </span>
+                        )}
+                      </div>
+                      <span
+                        style={{
+                          fontFamily: font.family,
+                          fontSize: font.size,
+                          fontWeight: font.weight,
+                          color: "#16171C",
+                          lineHeight: 1.2,
+                          display: "block",
+                        }}
+                      >
+                        {nome}
+                      </span>
+                    </button>
+                  );
+                })}
               </div>
-            )}
-          </div>
-          <p className="text-[10px] text-[#16171C]/30">
-            Use o mouse ou o dedo (celular) para assinar dentro do campo acima.
-          </p>
+              <p className="text-[10px] text-[#16171C]/30">
+                A assinatura selecionada será registrada eletronicamente junto ao contrato.
+              </p>
+            </>
+          ) : (
+            <div className="bg-white border border-[#16171C]/10 rounded-xl px-6 py-5 text-center">
+              <p className="text-xs text-[#16171C]/30">
+                Preencha seu nome acima para visualizar as opções de assinatura.
+              </p>
+            </div>
+          )}
         </div>
+
+        {/* Hidden canvas for signature capture */}
+        <canvas ref={hiddenCanvasRef} className="hidden" />
 
         {error && (
           <div className="p-4 bg-red-50 border border-red-200 rounded-xl">
