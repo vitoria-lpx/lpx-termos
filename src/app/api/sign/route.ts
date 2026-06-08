@@ -90,12 +90,12 @@ export async function POST(request: NextRequest) {
 
     const fileName = `contrato-lpx-${nome.trim().replace(/\s+/g, "-").toLowerCase()}.pdf`;
 
-    const uniqueRecipients = [...new Set(["leo@lpxmarketing.com", "vitoria@lpxmarketing.com", email.trim()])];
-    console.log("[Resend] enviando para:", uniqueRecipients);
+    const toList = ["leo@lpxmarketing.com", "vitoria@lpxmarketing.com", email.trim()];
+    console.log("[Resend] enviando para:", toList);
 
     const { data: emailData, error: emailError } = await resend.emails.send({
       from: "LPX Marketing <noreply@lpxmarketing.com.br>",
-      to: uniqueRecipients,
+      to: toList,
       subject: `Contrato de Uso de Imagem assinado — ${nome.trim()}`,
       html: buildEmailHtml({ nome: nome.trim(), dataHoraCompleta }),
       attachments: [{ filename: fileName, content: pdfBuffer }],
