@@ -95,7 +95,7 @@ export async function POST(request: NextRequest) {
     console.log("[Resend] enviando para:", uniqueRecipients);
 
     const { data: emailData, error: emailError } = await resend.emails.send({
-      from: "LPX Marketing <onboarding@resend.dev>",
+      from: "LPX Marketing <noreply@lpxmarketing.com.br>",
       to: uniqueRecipients,
       subject: `Contrato de Uso de Imagem assinado — ${nome.trim()}`,
       html: buildEmailHtml({ nome: nome.trim(), dataHoraCompleta }),
