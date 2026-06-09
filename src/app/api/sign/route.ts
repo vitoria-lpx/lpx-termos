@@ -222,13 +222,18 @@ function arrowRow(
   doc.setTextColor(2, 0, 252);
   doc.text(">", x, y);
   doc.setTextColor(50, 50, 50);
-  doc.setFont("helvetica", "bold");
-  const labelText = " " + label + ": ";
-  doc.text(labelText, x + 3, y);
-  const labelW = doc.getTextWidth(labelText) + 3;
-  doc.setFont("helvetica", "normal");
-  const wrapped = doc.splitTextToSize(value, maxW - labelW);
-  doc.text(wrapped[0], x + labelW, y);
+  let textStartX: number;
+  if (label) {
+    doc.setFont("helvetica", "bold");
+    const labelText = " " + label + ": ";
+    doc.text(labelText, x + 3, y);
+    textStartX = x + doc.getTextWidth(labelText) + 3;
+    doc.setFont("helvetica", "normal");
+  } else {
+    textStartX = x + 5;
+  }
+  const wrapped = doc.splitTextToSize(value, maxW - (textStartX - x));
+  doc.text(wrapped[0], textStartX, y);
   y += lh;
   for (let i = 1; i < wrapped.length; i++) {
     if (y > pageH - 25) { doc.addPage(); y = margin; }
@@ -289,7 +294,7 @@ function buildPDF(params: PDFParams) {
   y = sectionHeader(doc, "Objeto e Vigência", y, margin, pageW, pageH);
   y = arrowRow(doc, "O quê", "Imagem, voz, nome, likeness, fotos, vídeos, depoimentos e conteúdos audiovisuais produzidos pelo(a) LICENCIANTE.", margin, y, maxW, lh, pageH, margin);
   y = arrowRow(doc, "Para quê", "Campanhas publicitárias, ações institucionais, promocionais, comerciais e digitais da LICENCIADA.", margin, y, maxW, lh, pageH, margin);
-  y = arrowRow(doc, "Onde", "Nacional e Internacional — todos os meios: mídias e plataformas digitais, redes sociais (Instagram, TikTok, Facebook, dentre outras), marketplaces, websites, TV, rádio, impresso, streaming, e tecnologias futuras.", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "Onde", "Nacional e Internacional - todos os meios: mídias e plataformas digitais, redes sociais (Instagram, TikTok, Facebook, dentre outras), market places, websites, TV, rádio, impresso, streaming, e tecnologias futuras.", margin, y, maxW, lh, pageH, margin);
   y = arrowRow(doc, "Prazo", "5 anos, com renovação automática. Rescisão mediante aviso escrito com 6 meses de antecedência.", margin, y, maxW, lh, pageH, margin);
   y = arrowRow(doc, "Pós-vigência", "Materiais já publicados podem permanecer em circulação, portfólio e histórico de campanhas sem custo adicional.", margin, y, maxW, lh, pageH, margin);
   y += 3;
@@ -301,9 +306,12 @@ function buildPDF(params: PDFParams) {
   y = labelRow(doc, "Sublicenciamento", " —", "Grupo econômico, afiliadas, agências de publicidade, parceiros comerciais e prestadores de serviço.", margin, y, maxW, lh, pageH, margin);
   y += 3;
 
-  // REMUNERAÇÃO
-  y = sectionHeader(doc, "Remuneração", y, margin, pageW, pageH);
-  y = txt(doc, "A remuneração ajustada entre as PARTES abrange integralmente todos os direitos previstos neste contrato, não sendo devida qualquer remuneração adicional, presente ou futura, a qualquer título.", margin, y, maxW, lh, pageH, margin);
+  // COMISSÃO
+  y = sectionHeader(doc, "Comissão", y, margin, pageW, pageH);
+  y = txt(doc, "O(A) LICENCIANTE fará jus a comissão de 7% (sete por cento) sobre o faturamento gerado por meio de suas indicações ou conteúdos vinculados à LICENCIADA, observadas as seguintes condições:", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "", "O saque da comissão somente será liberado quando o saldo acumulado atingir o valor mínimo de R$ 70,00 (setenta reais).", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "", "Alternativamente, o saque será liberado quando o faturamento total gerado pelo(a) LICENCIANTE junto à LICENCIADA superar R$ 1.000,00 (mil reais).", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "", "Enquanto não atingidas as condições acima, os valores permanecerão retidos e acumulados para saque futuro.", margin, y, maxW, lh, pageH, margin);
   y += 3;
 
   // DECLARAÇÕES E GARANTIAS

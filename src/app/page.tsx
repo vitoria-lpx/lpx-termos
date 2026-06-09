@@ -113,8 +113,8 @@ export default function Home() {
                 e digitais da LICENCIADA.
               </Arrow>
               <Arrow label="Onde">
-                Nacional e Internacional — todos os meios: mídias e plataformas digitais,
-                redes sociais (Instagram, TikTok, Facebook, dentre outras), marketplaces,
+                Nacional e Internacional - todos os meios: mídias e plataformas digitais,
+                redes sociais (Instagram, TikTok, Facebook, dentre outras), market places,
                 websites, TV, rádio, impresso, streaming, e tecnologias futuras.
               </Arrow>
               <Arrow label="Prazo">
@@ -144,13 +144,26 @@ export default function Home() {
               </DashItem>
             </Section>
 
-            {/* REMUNERAÇÃO */}
-            <Section title="Remuneração">
+            {/* COMISSÃO */}
+            <Section title="Comissão">
               <p>
-                A remuneração ajustada entre as PARTES abrange integralmente todos os
-                direitos previstos neste contrato, não sendo devida qualquer remuneração
-                adicional, presente ou futura, a qualquer título.
+                O(A) LICENCIANTE fará jus a comissão de 7% (sete por cento) sobre o
+                faturamento gerado por meio de suas indicações ou conteúdos vinculados à
+                LICENCIADA, observadas as seguintes condições:
               </p>
+              <Arrow>
+                O saque da comissão somente será liberado quando o saldo acumulado
+                atingir o valor mínimo de R$ 70,00 (setenta reais).
+              </Arrow>
+              <Arrow>
+                Alternativamente, o saque será liberado quando o faturamento total
+                gerado pelo(a) LICENCIANTE junto à LICENCIADA superar R$ 1.000,00
+                (mil reais).
+              </Arrow>
+              <Arrow>
+                Enquanto não atingidas as condições acima, os valores permanecerão
+                retidos e acumulados para saque futuro.
+              </Arrow>
             </Section>
 
             {/* DECLARAÇÕES E GARANTIAS */}
