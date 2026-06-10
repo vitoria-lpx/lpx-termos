@@ -209,7 +209,7 @@ export default function ContractLayout() {
           onClick={() => setOpen((v) => !v)}
           className="lg:hidden w-full flex items-center justify-between px-5 py-4 bg-white border border-[#16171C]/10 rounded-2xl shadow-sm mb-3 text-sm font-semibold text-[#16171C] hover:bg-[#f8f8fc] transition-colors"
         >
-          <span>{open ? "Fechar contrato" : "Ver contrato completo"}</span>
+          <span>{open ? "Fechar contrato" : "Clique e veja o contrato completo"}</span>
           <svg
             className={`w-4 h-4 text-[#0200FC] transition-transform duration-300 ${open ? "rotate-180" : ""}`}
             fill="none"
