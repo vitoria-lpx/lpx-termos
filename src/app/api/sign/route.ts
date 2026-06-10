@@ -309,9 +309,9 @@ function buildPDF(params: PDFParams) {
   // COMISSÃO
   y = sectionHeader(doc, "Comissão", y, margin, pageW, pageH);
   y = txt(doc, "O(A) LICENCIANTE fará jus a comissão de 7% (sete por cento) sobre o faturamento gerado por meio de suas indicações ou conteúdos vinculados à LICENCIADA, observadas as seguintes condições:", margin, y, maxW, lh, pageH, margin);
-  y = arrowRow(doc, "", "O saque da comissão somente será liberado quando o saldo acumulado atingir o valor mínimo de R$ 70,00 (setenta reais).", margin, y, maxW, lh, pageH, margin);
-  y = arrowRow(doc, "", "Alternativamente, o saque será liberado quando o faturamento total gerado pelo(a) LICENCIANTE junto à LICENCIADA superar R$ 1.000,00 (mil reais).", margin, y, maxW, lh, pageH, margin);
-  y = arrowRow(doc, "", "Enquanto não atingidas as condições acima, os valores permanecerão retidos e acumulados para saque futuro.", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "", "O saque da comissão somente será liberado quando o saldo mensal atingir o valor mínimo de R$ 70,00 (setenta reais).", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "", "Alternativamente, o saque será liberado quando o faturamento total mensal gerado pelo(a) LICENCIANTE junto à LICENCIADA superar R$ 1.000,00 (mil reais).", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "", "Enquanto não atingidas as condições acima no mês de referência, os valores não estarão disponíveis para saque.", margin, y, maxW, lh, pageH, margin);
   y += 3;
 
   // DECLARAÇÕES E GARANTIAS

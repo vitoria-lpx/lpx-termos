@@ -152,17 +152,17 @@ export default function Home() {
                 LICENCIADA, observadas as seguintes condições:
               </p>
               <Arrow>
-                O saque da comissão somente será liberado quando o saldo acumulado
+                O saque da comissão somente será liberado quando o saldo mensal
                 atingir o valor mínimo de R$ 70,00 (setenta reais).
               </Arrow>
               <Arrow>
                 Alternativamente, o saque será liberado quando o faturamento total
-                gerado pelo(a) LICENCIANTE junto à LICENCIADA superar R$ 1.000,00
+                mensal gerado pelo(a) LICENCIANTE junto à LICENCIADA superar R$ 1.000,00
                 (mil reais).
               </Arrow>
               <Arrow>
-                Enquanto não atingidas as condições acima, os valores permanecerão
-                retidos e acumulados para saque futuro.
+                Enquanto não atingidas as condições acima no mês de referência, os
+                valores não estarão disponíveis para saque.
               </Arrow>
             </Section>
 
