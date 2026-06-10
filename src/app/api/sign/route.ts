@@ -90,21 +90,24 @@ export async function POST(request: NextRequest) {
 
     const fileName = `contrato-lpx-${nome.trim().replace(/\s+/g, "-").toLowerCase()}.pdf`;
 
-    const toList = ["leo@lpxmarketing.com", "vitoria@lpxmarketing.com", email.trim()];
-    console.log("[Resend] enviando para:", toList);
-
-    const { data: emailData, error: emailError } = await resend.emails.send({
+    const recipients = ["leo@lpxmarketing.com", "vitoria@lpxmarketing.com", email.trim()];
+    const emailPayload = {
       from: "LPX Marketing <noreply@lpxmarketing.com.br>",
-      to: toList,
       subject: `Contrato de Uso de Imagem assinado — ${nome.trim()}`,
       html: buildEmailHtml({ nome: nome.trim(), dataHoraCompleta }),
       attachments: [{ filename: fileName, content: pdfBuffer }],
-    });
+    };
 
-    if (emailError) {
-      console.error("[Resend] erro ao enviar:", JSON.stringify(emailError));
-    } else {
-      console.log("[Resend] email enviado com sucesso — id:", emailData?.id);
+    for (const recipient of recipients) {
+      const { data: emailData, error: emailError } = await resend.emails.send({
+        ...emailPayload,
+        to: [recipient],
+      });
+      if (emailError) {
+        console.error(`[Resend] erro ao enviar para ${recipient}:`, JSON.stringify(emailError));
+      } else {
+        console.log(`[Resend] email enviado para ${recipient} — id:`, emailData?.id);
+      }
     }
 
     return NextResponse.json({ success: true });
