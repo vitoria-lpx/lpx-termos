@@ -303,11 +303,11 @@ export default function TermForm() {
           disabled={loading}
           className="w-full bg-[#0200FC] hover:bg-[#0200FC]/90 active:bg-[#0100d0] disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-4 rounded-xl transition-colors duration-200 tracking-widest uppercase mt-2"
         >
-          {loading ? "Processando..." : "Adotar Assinatura"}
+          {loading ? "Processando..." : "Enviar"}
         </button>
 
         <p className="text-xs text-[#16171C]/30 text-center leading-relaxed pt-1">
-          Ao clicar em &quot;Adotar Assinatura&quot;, você confirma que leu,
+          Ao clicar em &quot;Enviar&quot;, você confirma que leu,
           compreendeu e concorda com todos os termos do contrato acima.
         </p>
       </form>
