@@ -2,8 +2,17 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { Resend } from "resend";
 import { jsPDF } from "jspdf";
-import { format } from "date-fns";
-import { ptBR } from "date-fns/locale";
+const TZ = "America/Sao_Paulo";
+function fmtData(d: Date) {
+  const f = (opts: Intl.DateTimeFormatOptions) =>
+    new Intl.DateTimeFormat("pt-BR", { ...opts, timeZone: TZ }).format(d);
+  return `${f({ day: "2-digit" })} de ${f({ month: "long" })} de ${f({ year: "numeric" })}`;
+}
+function fmtHora(d: Date) {
+  return new Intl.DateTimeFormat("pt-BR", {
+    timeZone: TZ, hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false,
+  }).format(d);
+}
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -55,14 +64,8 @@ export async function POST(request: NextRequest) {
     }
     console.log("[Supabase] registro salvo com sucesso");
 
-    const dataAssinatura = format(assinado_em, "dd 'de' MMMM 'de' yyyy", {
-      locale: ptBR,
-    });
-    const dataHoraCompleta = format(
-      assinado_em,
-      "dd 'de' MMMM 'de' yyyy 'às' HH:mm:ss",
-      { locale: ptBR }
-    );
+    const dataAssinatura = fmtData(assinado_em);
+    const dataHoraCompleta = `${dataAssinatura} às ${fmtHora(assinado_em)}`;
 
     console.log("[PDF] iniciando geração...");
     let doc;
