@@ -87,7 +87,7 @@ function ContractContent() {
             websites, TV, rádio, impresso, streaming, e tecnologias futuras.
           </Arrow>
           <Arrow label="Prazo">
-            5 anos, com renovação automática. Rescisão mediante aviso escrito com 6
+            2 anos, com renovação automática. Rescisão mediante aviso escrito com 6
             meses de antecedência.
           </Arrow>
           <Arrow label="Pós-vigência">

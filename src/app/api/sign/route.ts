@@ -298,7 +298,7 @@ function buildPDF(params: PDFParams) {
   y = arrowRow(doc, "O quê", "Imagem, voz, nome, likeness, fotos, vídeos, depoimentos e conteúdos audiovisuais produzidos pelo(a) LICENCIANTE.", margin, y, maxW, lh, pageH, margin);
   y = arrowRow(doc, "Para quê", "Campanhas publicitárias, ações institucionais, promocionais, comerciais e digitais da LICENCIADA.", margin, y, maxW, lh, pageH, margin);
   y = arrowRow(doc, "Onde", "Nacional e Internacional - todos os meios: mídias e plataformas digitais, redes sociais (Instagram, TikTok, Facebook, dentre outras), market places, websites, TV, rádio, impresso, streaming, e tecnologias futuras.", margin, y, maxW, lh, pageH, margin);
-  y = arrowRow(doc, "Prazo", "5 anos, com renovação automática. Rescisão mediante aviso escrito com 6 meses de antecedência.", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "Prazo", "2 anos, com renovação automática. Rescisão mediante aviso escrito com 6 meses de antecedência.", margin, y, maxW, lh, pageH, margin);
   y = arrowRow(doc, "Pós-vigência", "Materiais já publicados podem permanecer em circulação, portfólio e histórico de campanhas sem custo adicional.", margin, y, maxW, lh, pageH, margin);
   y += 3;
 
