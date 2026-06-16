@@ -60,7 +60,7 @@ function ContractContent() {
       </div>
 
       <div className="px-8 py-8 space-y-8 text-sm">
-        <Section title="Partes">
+        <Section title="1. Partes">
           <p>
             <span className="text-[#16171C]/50 font-medium">LICENCIADA:</span>{" "}
             LPX Consultoria e Intermediação Ltda — CNPJ: 63.732.387/0001-90
@@ -72,7 +72,7 @@ function ContractContent() {
           </p>
         </Section>
 
-        <Section title="Objeto e Vigência">
+        <Section title="2. Objeto e Vigência">
           <Arrow label="O quê">
             Imagem, voz, nome, likeness, fotos, vídeos, depoimentos e conteúdos
             audiovisuais produzidos pelo(a) LICENCIANTE.
@@ -96,7 +96,7 @@ function ContractContent() {
           </Arrow>
         </Section>
 
-        <Section title="Direitos da Licenciada">
+        <Section title="3. Direitos da Licenciada">
           <DashItem label="Uso e Edição">
             Editar, adaptar, cortar, reproduzir, sincronizar, impulsionar, legendar,
             traduzir, remixar, reutilizar e transformar materiais (sem autorização
@@ -112,41 +112,59 @@ function ContractContent() {
           </DashItem>
         </Section>
 
-        <Section title="Comissão">
+        <Section title="4. Comissão">
           <p>
             O(A) LICENCIANTE fará jus a comissão de 7% (sete por cento) sobre o
-            faturamento gerado por meio de suas indicações ou conteúdos vinculados à
-            LICENCIADA, observadas as seguintes condições:
+            faturamento mensal gerado por meio de suas indicações ou conteúdos
+            vinculados à LICENCIADA, observadas as seguintes condições:
           </p>
           <Arrow>
-            O saque da comissão somente será liberado quando o saldo mensal
-            atingir o valor mínimo de R$ 70,00 (setenta reais).
+            O saque da comissão será liberado quando o saldo acumulado do
+            respectivo mês atingir o valor mínimo de R$ 70,00 (setenta reais).
           </Arrow>
           <Arrow>
-            Alternativamente, o saque será liberado quando o faturamento total
-            mensal gerado pelo(a) LICENCIANTE junto à LICENCIADA superar R$ 1.000,00
-            (mil reais).
+            Alternativamente, o saque será liberado quando o faturamento gerado
+            pelo(a) LICENCIANTE junto à LICENCIADA, no respectivo mês de apuração,
+            superar R$ 1.000,00 (mil reais).
           </Arrow>
           <Arrow>
-            Enquanto não atingidas as condições acima no mês de referência, os
-            valores não estarão disponíveis para saque.
+            Para fins desta cláusula, o saldo acumulado corresponderá
+            exclusivamente às comissões decorrentes das vendas realizadas dentro do
+            respectivo mês de apuração, não havendo soma ou compensação com valores
+            de meses anteriores ou posteriores.
           </Arrow>
         </Section>
 
-        <Section title="Declarações e Garantias do(a) Licenciante">
+        <Section title="5. Declarações e Garantias do(a) Licenciante">
           <p>
-            Possui plena capacidade e legitimidade para celebrar este contrato. Não
-            possui exclusividade ou impedimento que restrinja os direitos aqui
-            concedidos. Os materiais fornecidos não violam direitos autorais ou
-            direitos de terceiros. Responde integralmente por reclamações judiciais
-            ou extrajudiciais decorrentes dos materiais fornecidos. Eventual
-            divulgação de material pelo(a) LICENCIANTE ocorrerá por mera
-            liberalidade, não podendo a LICENCIADA exigir qualquer publicação, salvo
-            ajuste expresso por escrito entre as PARTES.
+            • Possui plena capacidade e legitimidade para celebrar este contrato.
+          </p>
+          <p>
+            • Não possui exclusividade ou impedimento que restrinja os direitos
+            aqui concedidos.
+          </p>
+          <p>
+            • Os materiais fornecidos não violam direitos autorais ou direitos de
+            terceiros.
+          </p>
+          <p>
+            • Responde integralmente por reclamações judiciais ou extrajudiciais
+            decorrentes dos materiais fornecidos.
+          </p>
+          <p>
+            • Eventual divulgação de material pelo(a) LICENCIANTE ocorrerá por mera
+            liberalidade, não podendo a LICENCIADA exigir qualquer publicação,
+            salvo ajuste expresso por escrito entre as PARTES.
+          </p>
+          <p>
+            • Caso a LICENCIANTE solicite a interrupção de uso de sua imagem ou
+            conteúdos, a LICENCIADA cessará novas divulgações em até 30 (trinta)
+            dias, permanecendo válidos os materiais já publicados e as campanhas em
+            andamento até sua conclusão.
           </p>
         </Section>
 
-        <Section title="Responsabilidades Adicionais">
+        <Section title="6. Responsabilidades Adicionais">
           <DashItem label="Cláusula Moral">
             A LICENCIADA pode rescindir imediatamente caso o(a) LICENCIANTE pratique
             atos que afetem sua reputação: escândalos, crimes ou condutas ilícitas.
@@ -162,7 +180,7 @@ function ContractContent() {
           </DashItem>
         </Section>
 
-        <Section title="Disposições Gerais">
+        <Section title="7. Disposições Gerais">
           <p>
             <strong className="text-[#16171C]/70">Vínculo:</strong> Este contrato
             NÃO estabelece vínculo empregatício, societário ou representativo entre

@@ -220,13 +220,14 @@ function arrowRow(
   maxW: number,
   lh: number,
   pageH: number,
-  margin: number
+  margin: number,
+  bulletChar: string = ">"
 ): number {
   if (y > pageH - 25) { doc.addPage(); y = margin; }
   doc.setFont("helvetica", "normal");
   doc.setFontSize(9);
   doc.setTextColor(2, 0, 252);
-  doc.text(">", x, y);
+  doc.text(bulletChar, x, y);
   doc.setTextColor(50, 50, 50);
   let textStartX: number;
   if (label) {
@@ -291,13 +292,13 @@ function buildPDF(params: PDFParams) {
   y += 10;
 
   // PARTES
-  y = sectionHeader(doc, "Partes", y, margin, pageW, pageH);
+  y = sectionHeader(doc, "1. Partes", y, margin, pageW, pageH);
   y = labelRow(doc, "LICENCIADA", ":", "LPX Consultoria e Intermediação Ltda — CNPJ: 63.732.387/0001-90", margin, y, maxW, lh, pageH, margin);
   y = labelRow(doc, "LICENCIANTE", ":", `${nome} • CPF: ${cpf} — Residente em: ${endereco}`, margin, y, maxW, lh, pageH, margin);
   y += 3;
 
   // OBJETO E VIGÊNCIA
-  y = sectionHeader(doc, "Objeto e Vigência", y, margin, pageW, pageH);
+  y = sectionHeader(doc, "2. Objeto e Vigência", y, margin, pageW, pageH);
   y = arrowRow(doc, "O quê", "Imagem, voz, nome, likeness, fotos, vídeos, depoimentos e conteúdos audiovisuais produzidos pelo(a) LICENCIANTE.", margin, y, maxW, lh, pageH, margin);
   y = arrowRow(doc, "Para quê", "Campanhas publicitárias, ações institucionais, promocionais, comerciais e digitais da LICENCIADA.", margin, y, maxW, lh, pageH, margin);
   y = arrowRow(doc, "Onde", "Nacional e Internacional - todos os meios: mídias e plataformas digitais, redes sociais (Instagram, TikTok, Facebook, dentre outras), market places, websites, TV, rádio, impresso, streaming, e tecnologias futuras.", margin, y, maxW, lh, pageH, margin);
@@ -306,34 +307,39 @@ function buildPDF(params: PDFParams) {
   y += 3;
 
   // DIREITOS DA LICENCIADA
-  y = sectionHeader(doc, "Direitos da Licenciada", y, margin, pageW, pageH);
+  y = sectionHeader(doc, "3. Direitos da Licenciada", y, margin, pageW, pageH);
   y = labelRow(doc, "Uso e Edição", " —", "Editar, adaptar, cortar, reproduzir, sincronizar, impulsionar, legendar, traduzir, remixar, reutilizar e transformar materiais (sem autorização adicional).", margin, y, maxW, lh, pageH, margin);
   y = labelRow(doc, "Publicidade Digital", " —", "Campanhas patrocinadas, tráfego pago, dark posts, whitelisting, branded content e IA (sem autorização adicional).", margin, y, maxW, lh, pageH, margin);
   y = labelRow(doc, "Sublicenciamento", " —", "Grupo econômico, afiliadas, agências de publicidade, parceiros comerciais e prestadores de serviço.", margin, y, maxW, lh, pageH, margin);
   y += 3;
 
   // COMISSÃO
-  y = sectionHeader(doc, "Comissão", y, margin, pageW, pageH);
-  y = txt(doc, "O(A) LICENCIANTE fará jus a comissão de 7% (sete por cento) sobre o faturamento gerado por meio de suas indicações ou conteúdos vinculados à LICENCIADA, observadas as seguintes condições:", margin, y, maxW, lh, pageH, margin);
-  y = arrowRow(doc, "", "O saque da comissão somente será liberado quando o saldo mensal atingir o valor mínimo de R$ 70,00 (setenta reais).", margin, y, maxW, lh, pageH, margin);
-  y = arrowRow(doc, "", "Alternativamente, o saque será liberado quando o faturamento total mensal gerado pelo(a) LICENCIANTE junto à LICENCIADA superar R$ 1.000,00 (mil reais).", margin, y, maxW, lh, pageH, margin);
-  y = arrowRow(doc, "", "Enquanto não atingidas as condições acima no mês de referência, os valores não estarão disponíveis para saque.", margin, y, maxW, lh, pageH, margin);
+  y = sectionHeader(doc, "4. Comissão", y, margin, pageW, pageH);
+  y = txt(doc, "O(A) LICENCIANTE fará jus a comissão de 7% (sete por cento) sobre o faturamento mensal gerado por meio de suas indicações ou conteúdos vinculados à LICENCIADA, observadas as seguintes condições:", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "", "O saque da comissão será liberado quando o saldo acumulado do respectivo mês atingir o valor mínimo de R$ 70,00 (setenta reais).", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "", "Alternativamente, o saque será liberado quando o faturamento gerado pelo(a) LICENCIANTE junto à LICENCIADA, no respectivo mês de apuração, superar R$ 1.000,00 (mil reais).", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "", "Para fins desta cláusula, o saldo acumulado corresponderá exclusivamente às comissões decorrentes das vendas realizadas dentro do respectivo mês de apuração, não havendo soma ou compensação com valores de meses anteriores ou posteriores.", margin, y, maxW, lh, pageH, margin);
   y += 3;
 
   // DECLARAÇÕES E GARANTIAS
-  y = sectionHeader(doc, "Declarações e Garantias do(a) Licenciante", y, margin, pageW, pageH);
-  y = txt(doc, "Possui plena capacidade e legitimidade para celebrar este contrato. Não possui exclusividade ou impedimento que restrinja os direitos aqui concedidos. Os materiais fornecidos não violam direitos autorais ou direitos de terceiros. Responde integralmente por reclamações judiciais ou extrajudiciais decorrentes dos materiais fornecidos. Eventual divulgação de material pelo(a) LICENCIANTE ocorrerá por mera liberalidade, não podendo a LICENCIADA exigir qualquer publicação, salvo ajuste expresso por escrito entre as PARTES.", margin, y, maxW, lh, pageH, margin);
+  y = sectionHeader(doc, "5. Declarações e Garantias do(a) Licenciante", y, margin, pageW, pageH);
+  y = arrowRow(doc, "", "Possui plena capacidade e legitimidade para celebrar este contrato.", margin, y, maxW, lh, pageH, margin, "•");
+  y = arrowRow(doc, "", "Não possui exclusividade ou impedimento que restrinja os direitos aqui concedidos.", margin, y, maxW, lh, pageH, margin, "•");
+  y = arrowRow(doc, "", "Os materiais fornecidos não violam direitos autorais ou direitos de terceiros.", margin, y, maxW, lh, pageH, margin, "•");
+  y = arrowRow(doc, "", "Responde integralmente por reclamações judiciais ou extrajudiciais decorrentes dos materiais fornecidos.", margin, y, maxW, lh, pageH, margin, "•");
+  y = arrowRow(doc, "", "Eventual divulgação de material pelo(a) LICENCIANTE ocorrerá por mera liberalidade, não podendo a LICENCIADA exigir qualquer publicação, salvo ajuste expresso por escrito entre as PARTES.", margin, y, maxW, lh, pageH, margin, "•");
+  y = arrowRow(doc, "", "Caso a LICENCIANTE solicite a interrupção de uso de sua imagem ou conteúdos, a LICENCIADA cessará novas divulgações em até 30 (trinta) dias, permanecendo válidos os materiais já publicados e as campanhas em andamento até sua conclusão.", margin, y, maxW, lh, pageH, margin, "•");
   y += 3;
 
   // RESPONSABILIDADES ADICIONAIS
-  y = sectionHeader(doc, "Responsabilidades Adicionais", y, margin, pageW, pageH);
+  y = sectionHeader(doc, "6. Responsabilidades Adicionais", y, margin, pageW, pageH);
   y = labelRow(doc, "Cláusula Moral", " —", "A LICENCIADA pode rescindir imediatamente caso o(a) LICENCIANTE pratique atos que afetem sua reputação: escândalos, crimes ou condutas ilícitas.", margin, y, maxW, lh, pageH, margin);
   y = labelRow(doc, "Indenização", " —", "O(A) LICENCIANTE indeniza a LICENCIADA por violação de direitos, falsidade de declarações, uso indevido de conteúdo e descumprimento contratual.", margin, y, maxW, lh, pageH, margin);
   y = labelRow(doc, "Confidencialidade", " —", "O(A) LICENCIANTE mantém sigilo sobre informações, estratégias, campanhas e dados da LICENCIADA, sob pena de responsabilização.", margin, y, maxW, lh, pageH, margin);
   y += 3;
 
   // DISPOSIÇÕES GERAIS
-  y = sectionHeader(doc, "Disposições Gerais", y, margin, pageW, pageH);
+  y = sectionHeader(doc, "7. Disposições Gerais", y, margin, pageW, pageH);
   y = labelRow(doc, "Vínculo", ":", "Este contrato NÃO estabelece vínculo empregatício, societário ou representativo entre as partes.", margin, y, maxW, lh, pageH, margin);
   y = labelRow(doc, "Foro", ":", "Comarca de Belo Horizonte/MG para dirimir quaisquer controvérsias decorrentes deste contrato.", margin, y, maxW, lh, pageH, margin);
 
