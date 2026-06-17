@@ -29,7 +29,7 @@ function randomId(): string {
   return Math.random().toString(36).slice(2, 10).toUpperCase();
 }
 
-export default function TermForm() {
+export default function TermForm({ apiPath = "/api/sign" }: { apiPath?: string }) {
   const [nome, setNome] = useState("");
   const [cpf, setCpf] = useState("");
   const [endereco, setEndereco] = useState("");
@@ -124,7 +124,7 @@ export default function TermForm() {
     );
 
     try {
-      const res = await fetch("/api/sign", {
+      const res = await fetch(apiPath, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ nome, cpf, endereco, email, assinatura }),
