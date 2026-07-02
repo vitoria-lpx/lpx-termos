@@ -118,7 +118,7 @@ function ContractContent() {
 
         <Section title="4. Comissão">
           <p>
-            O(A) LICENCIANTE fará jus a comissão de 7% (sete por cento) sobre o
+            O(A) LICENCIANTE fará jus a comissão de 10% (dez por cento) sobre o
             faturamento mensal gerado por meio de suas indicações ou conteúdos
             vinculados à LICENCIADA, observadas as seguintes condições:
           </p>
