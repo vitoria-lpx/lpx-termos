@@ -165,10 +165,10 @@ function sectionHeader(
   if (y > pageH - 35) { doc.addPage(); y = margin; }
   doc.setFont("helvetica", "bold");
   doc.setFontSize(7.5);
-  doc.setTextColor(2, 0, 252);
+  doc.setTextColor(239, 39, 255);
   doc.text(title.toUpperCase(), margin, y);
   y += 2;
-  doc.setDrawColor(2, 0, 252);
+  doc.setDrawColor(239, 39, 255);
   doc.setLineWidth(0.2);
   doc.line(margin, y, pageW - margin, y);
   y += 5;
@@ -226,7 +226,7 @@ function arrowRow(
   if (y > pageH - 25) { doc.addPage(); y = margin; }
   doc.setFont("helvetica", "normal");
   doc.setFontSize(9);
-  doc.setTextColor(2, 0, 252);
+  doc.setTextColor(239, 39, 255);
   doc.text(bulletChar, x, y);
   doc.setTextColor(50, 50, 50);
   let textStartX: number;
@@ -261,7 +261,7 @@ function buildPDF(params: PDFParams) {
   let y = 0;
 
   // Blue top bar
-  doc.setFillColor(2, 0, 252);
+  doc.setFillColor(239, 39, 255);
   doc.rect(0, 0, pageW, 4, "F");
 
   y = 14;
@@ -280,7 +280,7 @@ function buildPDF(params: PDFParams) {
   doc.text("Al. Oscar Niemeyer, 400 • Sala 307 — Nova Lima/MG — CEP 34.006-049", pageW / 2, y, { align: "center" });
 
   y += 7;
-  doc.setDrawColor(2, 0, 252);
+  doc.setDrawColor(239, 39, 255);
   doc.setLineWidth(0.5);
   doc.line(margin, y, pageW - margin, y);
   y += 7;
@@ -401,15 +401,15 @@ function buildPDF(params: PDFParams) {
 
   // Metadata box
   if (y > pageH - 42) { doc.addPage(); y = margin; }
-  doc.setFillColor(245, 245, 250);
+  doc.setFillColor(253, 241, 255);
   doc.roundedRect(margin, y, maxW, 32, 2, 2, "F");
-  doc.setDrawColor(2, 0, 252);
+  doc.setDrawColor(239, 39, 255);
   doc.setLineWidth(0.3);
   doc.roundedRect(margin, y, maxW, 32, 2, 2, "S");
   y += 6;
   doc.setFont("helvetica", "bold");
   doc.setFontSize(7.5);
-  doc.setTextColor(2, 0, 252);
+  doc.setTextColor(239, 39, 255);
   doc.text("REGISTRO DE ASSINATURA ELETRÔNICA", margin + 5, y);
   y += 5;
   doc.setFont("helvetica", "normal");
@@ -433,7 +433,7 @@ function buildPDF(params: PDFParams) {
     pageH - 8,
     { align: "center" }
   );
-  doc.setFillColor(2, 0, 252);
+  doc.setFillColor(239, 39, 255);
   doc.rect(0, pageH - 3, pageW, 3, "F");
 
   return doc;
