@@ -118,13 +118,16 @@ function ContractContent() {
 
         <Section title="4. Comissão">
           <p>
-            O(A) LICENCIANTE fará jus a comissão de 10% (dez por cento) sobre o
-            faturamento mensal gerado por meio de suas indicações ou conteúdos
-            vinculados à LICENCIADA, observadas as seguintes condições:
+            O(A) LICENCIANTE fará jus a uma comissão entre 5% (cinco por cento)
+            e 10% (dez por cento) sobre o faturamento mensal gerado por meio de
+            suas indicações ou conteúdos vinculados à LICENCIADA, sendo o
+            percentual aplicável variável conforme a marca escolhida pelo(a)
+            LICENCIANTE, e previamente acordado entre as partes, observadas as
+            seguintes condições:
           </p>
           <Arrow>
             O saque da comissão será liberado quando o saldo acumulado do
-            respectivo mês atingir o valor mínimo de R$ 70,00 (setenta reais).
+            respectivo mês atingir o valor mínimo de R$ 100,00 (cem reais).
           </Arrow>
           <Arrow>
             Alternativamente, o saque será liberado quando o faturamento gerado
