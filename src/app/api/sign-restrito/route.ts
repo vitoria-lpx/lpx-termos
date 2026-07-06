@@ -450,20 +450,20 @@ function buildEmailHtml({ nome, dataHoraCompleta }: { nome: string; dataHoraComp
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: Arial, sans-serif; background: #f0f0f2; }
     .wrap { max-width: 580px; margin: 32px auto; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,.08); }
-    .top-bar { height: 4px; background: #0200FC; }
+    .top-bar { height: 4px; background: #EF27FF; }
     .header { background: #ffffff; padding: 24px 40px; text-align: center; border-bottom: 1px solid #f0f0f0; }
     .logo-img { height: 36px; width: auto; display: block; margin: 0 auto; }
     .body { padding: 40px; }
     .body h2 { color: #111; font-size: 18px; margin-bottom: 16px; }
     .body p { color: #555; font-size: 14px; line-height: 1.7; margin-bottom: 14px; }
-    .card { background: #f5f5ff; border-left: 3px solid #0200FC; border-radius: 6px; padding: 16px 20px; margin: 20px 0; }
+    .card { background: #fdf1ff; border-left: 3px solid #EF27FF; border-radius: 6px; padding: 16px 20px; margin: 20px 0; }
     .card p { margin: 0; color: #333; font-size: 13px; }
     .checklist { list-style: none; margin: 0 0 20px; }
     .checklist li { display: flex; align-items: center; gap: 10px; font-size: 13px; color: #555; padding: 7px 0; border-bottom: 1px solid #f0f0f0; }
-    .check { width: 18px; height: 18px; border-radius: 50%; background: rgba(2,0,252,0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #0200FC; font-size: 11px; }
+    .check { width: 18px; height: 18px; border-radius: 50%; background: rgba(239,39,255,0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #EF27FF; font-size: 11px; }
     .footer { background: #16171C; padding: 20px 40px; text-align: center; }
     .footer p { color: #444; font-size: 11px; }
-    a { color: #0200FC; text-decoration: none; }
+    a { color: #EF27FF; text-decoration: none; }
   </style>
 </head>
 <body>

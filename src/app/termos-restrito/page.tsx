@@ -19,7 +19,7 @@ export default function TermosRestrito() {
 
       <div className="max-w-5xl mx-auto px-6 py-12 space-y-10">
         <div className="space-y-2">
-          <p className="text-[10px] text-[#0200FC] tracking-[0.25em] uppercase font-medium">
+          <p className="text-[10px] text-[#EF27FF] tracking-[0.25em] uppercase font-medium">
             Documento Oficial
           </p>
           <h1 className="text-2xl sm:text-3xl font-bold text-[#16171C] tracking-tight">

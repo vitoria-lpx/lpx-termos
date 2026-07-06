@@ -22,9 +22,9 @@ export default async function Sucesso({
         </div>
 
         <div className="flex justify-center">
-          <div className="w-20 h-20 rounded-full bg-[#0200FC]/8 border border-[#0200FC]/20 flex items-center justify-center">
+          <div className="w-20 h-20 rounded-full bg-[#EF27FF]/8 border border-[#EF27FF]/20 flex items-center justify-center">
             <svg
-              className="w-10 h-10 text-[#0200FC]"
+              className="w-10 h-10 text-[#EF27FF]"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -44,7 +44,7 @@ export default async function Sucesso({
             Contrato Assinado!
           </h1>
           {nome && (
-            <p className="text-[#0200FC] font-medium">Obrigado(a), {nome}.</p>
+            <p className="text-[#EF27FF] font-medium">Obrigado(a), {nome}.</p>
           )}
           <p className="text-[#16171C]/50 text-sm leading-relaxed">
             O contrato foi registrado com sucesso. Uma cópia em PDF foi enviada
@@ -59,9 +59,9 @@ export default async function Sucesso({
             "Cópia em PDF enviada por e-mail",
           ].map((item) => (
             <div key={item} className="flex items-center gap-3">
-              <span className="w-5 h-5 rounded-full bg-[#0200FC]/10 flex items-center justify-center flex-shrink-0">
+              <span className="w-5 h-5 rounded-full bg-[#EF27FF]/10 flex items-center justify-center flex-shrink-0">
                 <svg
-                  className="w-3 h-3 text-[#0200FC]"
+                  className="w-3 h-3 text-[#EF27FF]"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"

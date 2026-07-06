@@ -3,7 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #16171c;
-  --accent: #0200fc;
+  --accent: #EF27FF;
 }
 
 @theme inline {
@@ -26,9 +26,9 @@ body {
   background: #f0f0f0;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(2, 0, 252, 0.2);
+  background: rgba(239, 39, 255, 0.2);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #0200fc;
+  background: #EF27FF;
 }

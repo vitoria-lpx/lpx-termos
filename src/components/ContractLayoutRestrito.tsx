@@ -5,7 +5,7 @@ import TermForm from "./TermForm";
 
 function Ph({ text }: { text: string }) {
   return (
-    <span className="text-[#0200FC] border-b border-[#0200FC]/30 pb-px">
+    <span className="text-[#EF27FF] border-b border-[#EF27FF]/30 pb-px">
       {text}
     </span>
   );
@@ -14,7 +14,7 @@ function Ph({ text }: { text: string }) {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="space-y-3">
-      <h3 className="text-[10px] font-bold text-[#0200FC] tracking-[0.2em] uppercase border-b border-[#0200FC]/15 pb-2">
+      <h3 className="text-[10px] font-bold text-[#EF27FF] tracking-[0.2em] uppercase border-b border-[#EF27FF]/15 pb-2">
         {title}
       </h3>
       <div className="space-y-2 text-[#16171C]/70 leading-relaxed">{children}</div>
@@ -25,7 +25,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 function Arrow({ label, children }: { label?: string; children: React.ReactNode }) {
   return (
     <div className="flex gap-2.5">
-      <span className="text-[#0200FC] flex-shrink-0 mt-0.5 text-xs font-bold">▸</span>
+      <span className="text-[#EF27FF] flex-shrink-0 mt-0.5 text-xs font-bold">▸</span>
       <span>
         {label && <strong className="text-[#16171C]/60">{label}: </strong>}
         {children}
@@ -47,8 +47,8 @@ function DashItem({ label, children }: { label: string; children: React.ReactNod
 function ContractContent() {
   return (
     <div className="bg-white border border-[#16171C]/10 rounded-2xl overflow-hidden shadow-sm">
-      <div className="bg-[#0200FC]/5 border-b border-[#0200FC]/12 px-8 py-6">
-        <p className="text-[10px] font-bold text-[#0200FC] tracking-[0.2em] uppercase mb-2">
+      <div className="bg-[#EF27FF]/5 border-b border-[#EF27FF]/12 px-8 py-6">
+        <p className="text-[10px] font-bold text-[#EF27FF] tracking-[0.2em] uppercase mb-2">
           Contrato de Licença e Cessão de Uso de Imagem
         </p>
         <p className="text-sm font-semibold text-[#16171C]">
@@ -233,7 +233,7 @@ export default function ContractLayoutRestrito() {
         >
           <span>{open ? "Fechar contrato" : "Clique e veja o contrato completo"}</span>
           <svg
-            className={`w-4 h-4 text-[#0200FC] transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+            className={`w-4 h-4 text-[#EF27FF] transition-transform duration-300 ${open ? "rotate-180" : ""}`}
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"

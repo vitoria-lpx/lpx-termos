@@ -144,7 +144,7 @@ export default function TermForm({ apiPath = "/api/sign" }: { apiPath?: string }
   };
 
   const inputClass =
-    "w-full bg-white border border-[#16171C]/15 rounded-xl px-4 py-3 text-[#16171C] placeholder-[#16171C]/30 focus:outline-none focus:border-[#0200FC]/50 focus:ring-1 focus:ring-[#0200FC]/15 transition-colors duration-200";
+    "w-full bg-white border border-[#16171C]/15 rounded-xl px-4 py-3 text-[#16171C] placeholder-[#16171C]/30 focus:outline-none focus:border-[#EF27FF]/50 focus:ring-1 focus:ring-[#EF27FF]/15 transition-colors duration-200";
 
   const font = FONTS[fontIndex];
 
@@ -185,7 +185,7 @@ export default function TermForm({ apiPath = "/api/sign" }: { apiPath?: string }
 
           {/* Header */}
           <div className="px-6 py-4 border-b border-[#16171C]/8 flex items-center gap-2">
-            <svg className="w-4 h-4 text-[#0200FC]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <svg className="w-4 h-4 text-[#EF27FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
             </svg>
             <span className="text-sm font-semibold text-[#16171C]">Assinatura Eletrônica</span>
@@ -204,7 +204,7 @@ export default function TermForm({ apiPath = "/api/sign" }: { apiPath?: string }
                   value={sigNome}
                   onChange={(e) => setSigNome(e.target.value)}
                   placeholder="Nome para assinatura"
-                  className="w-full bg-[#f8f8fc] border border-[#16171C]/12 rounded-lg px-3 py-2 text-sm text-[#16171C] placeholder-[#16171C]/25 focus:outline-none focus:border-[#0200FC]/40 focus:ring-1 focus:ring-[#0200FC]/10 transition-colors"
+                  className="w-full bg-[#f8f8fc] border border-[#16171C]/12 rounded-lg px-3 py-2 text-sm text-[#16171C] placeholder-[#16171C]/25 focus:outline-none focus:border-[#EF27FF]/40 focus:ring-1 focus:ring-[#EF27FF]/10 transition-colors"
                 />
               </div>
               <div className="space-y-1.5">
@@ -217,22 +217,22 @@ export default function TermForm({ apiPath = "/api/sign" }: { apiPath?: string }
                   onChange={(e) => setRubrica(e.target.value.toUpperCase().slice(0, 3))}
                   placeholder="Iniciais"
                   maxLength={3}
-                  className="w-full bg-[#f8f8fc] border border-[#16171C]/12 rounded-lg px-3 py-2 text-sm text-[#16171C] placeholder-[#16171C]/25 focus:outline-none focus:border-[#0200FC]/40 focus:ring-1 focus:ring-[#0200FC]/10 transition-colors"
+                  className="w-full bg-[#f8f8fc] border border-[#16171C]/12 rounded-lg px-3 py-2 text-sm text-[#16171C] placeholder-[#16171C]/25 focus:outline-none focus:border-[#EF27FF]/40 focus:ring-1 focus:ring-[#EF27FF]/10 transition-colors"
                 />
               </div>
             </div>
 
             {/* Tab bar */}
             <div className="flex border-b border-[#16171C]/8">
-              <div className="px-4 py-2 border-b-2 border-[#0200FC] -mb-px">
-                <span className="text-xs font-semibold text-[#0200FC] tracking-widest uppercase">
+              <div className="px-4 py-2 border-b-2 border-[#EF27FF] -mb-px">
+                <span className="text-xs font-semibold text-[#EF27FF] tracking-widest uppercase">
                   Selecionar Estilo
                 </span>
               </div>
             </div>
 
             {/* Signature preview */}
-            <div className="rounded-xl border-2 border-[#0200FC]/20 bg-white overflow-hidden">
+            <div className="rounded-xl border-2 border-[#EF27FF]/20 bg-white overflow-hidden">
               <div className="px-6 pt-6 pb-4 flex items-center justify-center min-h-[96px]">
                 {sigNome.trim() ? (
                   <span
@@ -263,7 +263,7 @@ export default function TermForm({ apiPath = "/api/sign" }: { apiPath?: string }
                   </p>
                 </div>
                 <div className="flex-shrink-0">
-                  <svg className="w-5 h-5 text-[#0200FC]/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <svg className="w-5 h-5 text-[#EF27FF]/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
                   </svg>
                 </div>
@@ -276,7 +276,7 @@ export default function TermForm({ apiPath = "/api/sign" }: { apiPath?: string }
               <button
                 type="button"
                 onClick={cycleFont}
-                className="text-xs font-medium text-[#0200FC] hover:text-[#0200FC]/70 transition-colors flex items-center gap-1"
+                className="text-xs font-medium text-[#EF27FF] hover:text-[#EF27FF]/70 transition-colors flex items-center gap-1"
               >
                 <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
@@ -301,7 +301,7 @@ export default function TermForm({ apiPath = "/api/sign" }: { apiPath?: string }
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-[#0200FC] hover:bg-[#0200FC]/90 active:bg-[#0100d0] disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-4 rounded-xl transition-colors duration-200 tracking-widest uppercase mt-2"
+          className="w-full bg-[#EF27FF] hover:bg-[#EF27FF]/90 active:bg-[#c91fd6] disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-4 rounded-xl transition-colors duration-200 tracking-widest uppercase mt-2"
         >
           {loading ? "Processando..." : "Enviar"}
         </button>
