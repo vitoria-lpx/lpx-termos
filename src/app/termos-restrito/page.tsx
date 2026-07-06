@@ -7,9 +7,9 @@ export default function TermosRestrito() {
       <header className="border-b border-[#16171C]/8 py-5">
         <div className="max-w-5xl mx-auto px-6">
           <Image
-            src="/LPX_LOGO_L4.png"
+            src="/LPXlogonova2.png"
             alt="LPX"
-            width={110}
+            width={44}
             height={44}
             className="h-11 w-auto"
             priority

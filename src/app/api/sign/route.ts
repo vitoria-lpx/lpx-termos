@@ -470,7 +470,7 @@ function buildEmailHtml({ nome, dataHoraCompleta }: { nome: string; dataHoraComp
   <div class="wrap">
     <div class="top-bar"></div>
     <div class="header">
-      <img src="https://lpx-termos.vercel.app/LPX_LOGO_L4.png" alt="LPX Marketing" class="logo-img" />
+      <img src="https://lpx-termos.vercel.app/LPXlogonova2.png" alt="LPX Marketing" class="logo-img" />
     </div>
     <div class="body">
       <h2>Contrato Assinado com Sucesso</h2>

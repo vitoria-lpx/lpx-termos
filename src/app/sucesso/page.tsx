@@ -13,9 +13,9 @@ export default async function Sucesso({
       <div className="max-w-md w-full text-center space-y-8">
         <div className="flex justify-center">
           <Image
-            src="/LPX_LOGO_L4.png"
+            src="/LPXlogonova2.png"
             alt="LPX"
-            width={110}
+            width={44}
             height={44}
             className="h-11 w-auto"
           />
