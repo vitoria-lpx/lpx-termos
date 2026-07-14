@@ -302,7 +302,7 @@ function buildPDF(params: PDFParams) {
   y = arrowRow(doc, "O quê", "Imagem, voz, nome, likeness, fotos, vídeos, depoimentos e conteúdos audiovisuais produzidos pelo(a) LICENCIANTE.", margin, y, maxW, lh, pageH, margin);
   y = arrowRow(doc, "Para quê", "Campanhas publicitárias, ações institucionais, promocionais, comerciais e digitais da LICENCIADA.", margin, y, maxW, lh, pageH, margin);
   y = arrowRow(doc, "Onde", "Nacional e Internacional - todos os meios: mídias e plataformas digitais, redes sociais (Instagram, TikTok, Facebook, dentre outras), market places, websites, TV, rádio, impresso, streaming, e tecnologias futuras.", margin, y, maxW, lh, pageH, margin);
-  y = arrowRow(doc, "Prazo", "2 anos, com renovação automática. Rescisão mediante aviso escrito com 6 meses de antecedência.", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "Prazo", "1 (um) ano, sem renovação automática. Rescisão mediante aviso escrito com 6 meses de antecedência.", margin, y, maxW, lh, pageH, margin);
   y = arrowRow(doc, "Pós-vigência", "Materiais já publicados podem permanecer em circulação, portfólio e histórico de campanhas sem custo adicional.", margin, y, maxW, lh, pageH, margin);
   y += 3;
 
@@ -311,6 +311,7 @@ function buildPDF(params: PDFParams) {
   y = labelRow(doc, "Uso e Edição", " —", "Editar, adaptar, cortar, reproduzir, sincronizar, impulsionar, legendar, traduzir, reutilizar e transformar materiais, desde que não altere o sentido original do conteúdo, não retire falas ou imagens de contexto, não crie mensagem diversa daquela aprovada pela Licenciante, nem prejudique sua imagem, reputação, posicionamento ou autenticidade. Qualquer remixagem, manipulação, edição substancial ou uso em contexto diferente do originalmente aprovado dependerá de autorização prévia e expressa da Licenciante.", margin, y, maxW, lh, pageH, margin);
   y = labelRow(doc, "Publicidade Digital", " —", "Campanhas patrocinadas, tráfego pago, dark posts, whitelisting, branded content e IA (sem autorização adicional).", margin, y, maxW, lh, pageH, margin);
   y = labelRow(doc, "Sublicenciamento", " —", "Grupo econômico, afiliadas, agências de publicidade, parceiros comerciais e prestadores de serviço.", margin, y, maxW, lh, pageH, margin);
+  y = labelRow(doc, "Envio de Produtos", " —", "A LICENCIADA enviará produtos à LICENCIANTE, a título de contrapartida, conforme acordado entre as partes.", margin, y, maxW, lh, pageH, margin);
   y += 3;
 
   // COMISSÃO

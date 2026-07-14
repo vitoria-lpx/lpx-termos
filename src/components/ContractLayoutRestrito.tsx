@@ -87,8 +87,8 @@ function ContractContent() {
             websites, TV, rádio, impresso, streaming, e tecnologias futuras.
           </Arrow>
           <Arrow label="Prazo">
-            2 anos, com renovação automática. Rescisão mediante aviso escrito com 6
-            meses de antecedência.
+            1 (um) ano, sem renovação automática. Rescisão mediante aviso escrito
+            com 6 meses de antecedência.
           </Arrow>
           <Arrow label="Pós-vigência">
             Materiais já publicados podem permanecer em circulação, portfólio e
@@ -113,6 +113,10 @@ function ContractContent() {
           <DashItem label="Sublicenciamento">
             Grupo econômico, afiliadas, agências de publicidade, parceiros comerciais
             e prestadores de serviço.
+          </DashItem>
+          <DashItem label="Envio de Produtos">
+            A LICENCIADA enviará produtos à LICENCIANTE, a título de contrapartida,
+            conforme acordado entre as partes.
           </DashItem>
         </Section>
 
