@@ -320,6 +320,7 @@ function buildPDF(params: PDFParams) {
   y = arrowRow(doc, "", "O saque da comissão será liberado quando o saldo acumulado do respectivo mês atingir o valor mínimo de R$ 100,00 (cem reais).", margin, y, maxW, lh, pageH, margin);
   y = arrowRow(doc, "", "Alternativamente, o saque será liberado quando o faturamento gerado pelo(a) LICENCIANTE junto à LICENCIADA, no respectivo mês de apuração, superar R$ 1.000,00 (mil reais).", margin, y, maxW, lh, pageH, margin);
   y = arrowRow(doc, "", "Para fins desta cláusula, o saldo acumulado corresponderá exclusivamente às comissões decorrentes das vendas realizadas dentro do respectivo mês de apuração, não havendo soma ou compensação com valores de meses anteriores ou posteriores.", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "", "Para fins desta cláusula, considera-se comissionável apenas o faturamento gerado organicamente, isto é, decorrente do alcance natural dos posts publicados pelo(a) LICENCIANTE em seus próprios canais. Caso o conteúdo produzido seja veiculado em mídia paga (ads, impulsionamento, tráfego pago ou dark posts) pela LICENCIADA, a comissão não será devida sobre as vendas daí decorrentes.", margin, y, maxW, lh, pageH, margin);
   y += 3;
 
   // DECLARAÇÕES E GARANTIAS

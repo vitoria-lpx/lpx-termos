@@ -136,6 +136,14 @@ function ContractContent() {
             respectivo mês de apuração, não havendo soma ou compensação com valores
             de meses anteriores ou posteriores.
           </Arrow>
+          <Arrow>
+            Para fins desta cláusula, considera-se comissionável apenas o
+            faturamento gerado organicamente, isto é, decorrente do alcance
+            natural dos posts publicados pelo(a) LICENCIANTE em seus próprios
+            canais. Caso o conteúdo produzido seja veiculado em mídia paga (ads,
+            impulsionamento, tráfego pago ou dark posts) pela LICENCIADA, a
+            comissão não será devida sobre as vendas daí decorrentes.
+          </Arrow>
         </Section>
 
         <Section title="5. Declarações e Garantias do(a) Licenciante">
