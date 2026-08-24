@@ -87,12 +87,15 @@ function ContractContent() {
             websites, TV, rádio, impresso, streaming, e tecnologias futuras.
           </Arrow>
           <Arrow label="Prazo">
-            1 (um) ano, sem renovação automática. Rescisão mediante aviso escrito
-            com 6 meses de antecedência.
+            1 (um) ano, sem renovação automática, podendo ser renovado mediante
+            novo acordo entre as partes. Rescisão mediante aviso escrito com 6
+            meses de antecedência.
           </Arrow>
           <Arrow label="Pós-vigência">
             Materiais já publicados podem permanecer em circulação, portfólio e
-            histórico de campanhas sem custo adicional.
+            histórico de campanhas sem custo adicional, sendo vedada sua
+            utilização pela LICENCIADA em novas campanhas, publicações inéditas
+            ou mídia paga após o encerramento da vigência.
           </Arrow>
         </Section>
 
@@ -104,11 +107,19 @@ function ContractContent() {
             não crie mensagem diversa daquela aprovada pela Licenciante, nem prejudique
             sua imagem, reputação, posicionamento ou autenticidade. Qualquer remixagem,
             manipulação, edição substancial ou uso em contexto diferente do originalmente
-            aprovado dependerá de autorização prévia e expressa da Licenciante.
+            aprovado dependerá de autorização prévia e expressa da Licenciante. Em
+            campanhas de mídia paga, dark posts e whitelisting, o conteúdo será
+            utilizado exatamente como fornecido pelo(a) Licenciante, sendo permitida
+            apenas a inclusão de legendas e cortes de duração, vedada qualquer outra
+            edição, remixagem ou manipulação.
           </DashItem>
           <DashItem label="Publicidade Digital">
             Campanhas patrocinadas, tráfego pago, dark posts, whitelisting, branded
-            content e IA (sem autorização adicional).
+            content e uso de IA para edição do material fornecido (sem autorização
+            adicional), sendo vedada a criação de avatar digital, clonagem de voz,
+            geração de novas falas ou qualquer conteúdo que simule a participação
+            do(a) LICENCIANTE sem que tenha sido efetivamente produzido por ele(a),
+            exceto mediante autorização prévia e expressa.
           </DashItem>
           <DashItem label="Sublicenciamento">
             Grupo econômico, afiliadas, agências de publicidade, parceiros comerciais
@@ -130,13 +141,10 @@ function ContractContent() {
             seguintes condições:
           </p>
           <Arrow>
-            O saque da comissão será liberado quando o saldo acumulado do
-            respectivo mês atingir o valor mínimo de R$ 100,00 (cem reais).
-          </Arrow>
-          <Arrow>
-            Alternativamente, o saque será liberado quando o faturamento gerado
-            pelo(a) LICENCIANTE junto à LICENCIADA, no respectivo mês de apuração,
-            superar R$ 1.000,00 (mil reais).
+            O saque da comissão será liberado independentemente do valor
+            acumulado no mês, mediante emissão de nota fiscal pelo(a)
+            LICENCIANTE, não havendo valor mínimo exigido para liberação do
+            pagamento.
           </Arrow>
           <Arrow>
             Para fins desta cláusula, o saldo acumulado corresponderá
