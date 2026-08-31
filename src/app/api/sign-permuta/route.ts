@@ -134,26 +134,6 @@ type PDFParams = {
   assinatura: string;
 };
 
-// Renders wrapped text, returns updated y
-function txt(
-  doc: jsPDF,
-  text: string,
-  x: number,
-  y: number,
-  maxW: number,
-  lh: number,
-  pageH: number,
-  margin: number
-): number {
-  const lines = doc.splitTextToSize(text, maxW);
-  for (const line of lines) {
-    if (y > pageH - 25) { doc.addPage(); y = margin; }
-    doc.text(line, x, y);
-    y += lh;
-  }
-  return y;
-}
-
 function sectionHeader(
   doc: jsPDF,
   title: string,
@@ -210,6 +190,46 @@ function labelRow(
   return y;
 }
 
+// Renders "▸ Label: value" arrow bullet
+function arrowRow(
+  doc: jsPDF,
+  label: string,
+  value: string,
+  x: number,
+  y: number,
+  maxW: number,
+  lh: number,
+  pageH: number,
+  margin: number,
+  bulletChar: string = ">"
+): number {
+  if (y > pageH - 25) { doc.addPage(); y = margin; }
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(9);
+  doc.setTextColor(239, 39, 255);
+  doc.text(bulletChar, x, y);
+  doc.setTextColor(50, 50, 50);
+  let textStartX: number;
+  if (label) {
+    doc.setFont("helvetica", "bold");
+    const labelText = " " + label + ": ";
+    doc.text(labelText, x + 3, y);
+    textStartX = x + doc.getTextWidth(labelText) + 3;
+    doc.setFont("helvetica", "normal");
+  } else {
+    textStartX = x + 5;
+  }
+  const wrapped = doc.splitTextToSize(value, maxW - (textStartX - x));
+  doc.text(wrapped[0], textStartX, y);
+  y += lh;
+  for (let i = 1; i < wrapped.length; i++) {
+    if (y > pageH - 25) { doc.addPage(); y = margin; }
+    doc.text(wrapped[i], x, y);
+    y += lh;
+  }
+  return y;
+}
+
 function buildPDF(params: PDFParams) {
   const { nome, cpf, endereco, email, dataAssinatura, dataHoraCompleta, ip, assinatura } = params;
   const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
@@ -257,45 +277,45 @@ function buildPDF(params: PDFParams) {
 
   // OBJETO E VIGÊNCIA
   y = sectionHeader(doc, "1. Objeto e Vigência", y, margin, pageW, pageH);
-  y = labelRow(doc, "O quê", ":", "Estabelecer condições, obrigações e responsabilidades decorrentes da parceria comercial entre as PARTES, especialmente quanto à participação da INFLUENCIADORA em campanhas, ações publicitárias, promocionais, comerciais e institucionais intermediadas pela INTERMEDIADORA junto a marcas e parceiros comerciais.", margin, y, maxW, lh, pageH, margin);
-  y = labelRow(doc, "Prazo", ":", "2 anos, com renovação automática.", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "O quê", "Estabelecer condições, obrigações e responsabilidades decorrentes da parceria comercial entre as PARTES, especialmente quanto à participação da INFLUENCIADORA em campanhas, ações publicitárias, promocionais, comerciais e institucionais intermediadas pela INTERMEDIADORA junto a marcas e parceiros comerciais.", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "Prazo", "2 anos, com renovação automática.", margin, y, maxW, lh, pageH, margin);
   y += 3;
 
   // AUTORIZAÇÃO
   y = sectionHeader(doc, "2. Autorização para Uso de Imagem, Voz, Nome e Conteúdo", y, margin, pageW, pageH);
-  y = txt(doc, "A INFLUENCIADORA autoriza a utilização de sua imagem, voz, nome, likeness, fotografias, vídeos, depoimentos e conteúdos audiovisuais produzidos no âmbito da parceria, em campanhas publicitárias, ações institucionais, promocionais, comerciais e digitais da INTERMEDIADORA.", margin, y, maxW, lh, pageH, margin);
-  y = txt(doc, "A autorização é válida em território nacional e internacional e abrange todos os meios, incluindo mídias e plataformas digitais, Instagram, TikTok, Facebook, marketplaces, websites, televisão, rádio, mídia impressa, streaming e tecnologias futuras.", margin, y, maxW, lh, pageH, margin);
-  y = txt(doc, "A INTERMEDIADORA poderá editar, adaptar, cortar, reproduzir, sincronizar, legendar, traduzir, remixar, reutilizar e transformar os materiais, sem autorização adicional.", margin, y, maxW, lh, pageH, margin);
-  y = txt(doc, "A autorização compreende campanhas patrocinadas, tráfego pago, impulsionamento, dark posts, whitelisting, branded content e inteligência artificial, sem autorização adicional.", margin, y, maxW, lh, pageH, margin);
-  y = txt(doc, "Os direitos previstos nessa cláusula poderão ser licenciados às marcas contratantes, integrantes do grupo econômico, afiliadas, agências de publicidade, parceiros comerciais e prestadores de serviços.", margin, y, maxW, lh, pageH, margin);
-  y = txt(doc, "Os materiais já publicados poderão permanecer em circulação, integrar portfólios e históricos de campanhas, sem remuneração adicional.", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "", "A INFLUENCIADORA autoriza a utilização de sua imagem, voz, nome, likeness, fotografias, vídeos, depoimentos e conteúdos audiovisuais produzidos no âmbito da parceria, em campanhas publicitárias, ações institucionais, promocionais, comerciais e digitais da INTERMEDIADORA.", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "", "A autorização é válida em território nacional e internacional e abrange todos os meios, incluindo mídias e plataformas digitais, Instagram, TikTok, Facebook, marketplaces, websites, televisão, rádio, mídia impressa, streaming e tecnologias futuras.", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "", "A INTERMEDIADORA poderá editar, adaptar, cortar, reproduzir, sincronizar, legendar, traduzir, remixar, reutilizar e transformar os materiais, sem autorização adicional.", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "", "A autorização compreende campanhas patrocinadas, tráfego pago, impulsionamento, dark posts, whitelisting, branded content e inteligência artificial, sem autorização adicional.", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "", "Os direitos previstos nessa cláusula poderão ser licenciados às marcas contratantes, integrantes do grupo econômico, afiliadas, agências de publicidade, parceiros comerciais e prestadores de serviços.", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "", "Os materiais já publicados poderão permanecer em circulação, integrar portfólios e históricos de campanhas, sem remuneração adicional.", margin, y, maxW, lh, pageH, margin);
   y += 3;
 
   // PERMUTA
   y = sectionHeader(doc, "3. Permuta", y, margin, pageW, pageH);
-  y = txt(doc, "A participação da INFLUENCIADORA na campanha ocorrerá mediante permuta, consistente no envio, pela MARCA, diretamente à INFLUENCIADORA, dos produtos previamente definidos para a respectiva campanha, sem qualquer pagamento ou contraprestação financeira.", margin, y, maxW, lh, pageH, margin);
-  y = txt(doc, "A INTERMEDIADORA será responsável pelo alinhamento prévio com a INFLUENCIADORA quanto aos conteúdos, devendo a INFLUENCIADORA observar integralmente as condições previamente acordadas.", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "", "A participação da INFLUENCIADORA na campanha ocorrerá mediante permuta, consistente no envio, pela MARCA, diretamente à INFLUENCIADORA, dos produtos previamente definidos para a respectiva campanha, sem qualquer pagamento ou contraprestação financeira.", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "", "A INTERMEDIADORA será responsável pelo alinhamento prévio com a INFLUENCIADORA quanto aos conteúdos, devendo a INFLUENCIADORA observar integralmente as condições previamente acordadas.", margin, y, maxW, lh, pageH, margin);
   y += 3;
 
   // RESPONSABILIDADES
   y = sectionHeader(doc, "4. Responsabilidades", y, margin, pageW, pageH);
-  y = txt(doc, "A INFLUENCIADORA se compromete a observar a legislação aplicável às suas atividades, incluindo o Código de Defesa do Consumidor e as diretrizes do CONAR; bem como a observar o Manual de Boas Práticas (anexo).", margin, y, maxW, lh, pageH, margin);
-  y = txt(doc, "A INFLUENCIADORA declara que (i) não possui exclusividade ou impedimento que restrinja os direitos ora concedidos, e (ii) os conteúdos por ela produzidos ou fornecidos não violam direitos autorais ou quaisquer outros direitos de terceiros.", margin, y, maxW, lh, pageH, margin);
-  y = txt(doc, "A INFLUENCIADORA é responsável pelos atos, declarações e conteúdos que produzir ou divulgar, respondendo por reclamações, notificações e demandas judiciais ou extrajudiciais, bem como pelos prejuízos deles decorrentes.", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "", "A INFLUENCIADORA se compromete a observar a legislação aplicável às suas atividades, incluindo o Código de Defesa do Consumidor e as diretrizes do CONAR; bem como a observar o Manual de Boas Práticas (anexo).", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "", "A INFLUENCIADORA declara que (i) não possui exclusividade ou impedimento que restrinja os direitos ora concedidos, e (ii) os conteúdos por ela produzidos ou fornecidos não violam direitos autorais ou quaisquer outros direitos de terceiros.", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "", "A INFLUENCIADORA é responsável pelos atos, declarações e conteúdos que produzir ou divulgar, respondendo por reclamações, notificações e demandas judiciais ou extrajudiciais, bem como pelos prejuízos deles decorrentes.", margin, y, maxW, lh, pageH, margin);
   y += 3;
 
   // RESCISÃO
   y = sectionHeader(doc, "5. Rescisão", y, margin, pageW, pageH);
-  y = txt(doc, "Comunicação prévia de 30 (trinta) dias, ressalvadas as campanhas e obrigações já assumidas perante terceiros.", margin, y, maxW, lh, pageH, margin);
-  y = txt(doc, "A INTERMEDIADORA poderá rescindir o termo em caso de descumprimento de obrigação contratual, violação do Manual de Conduta, prática de ato ilícito ou conduta que cause dano à imagem ou reputação da INTERMEDIADORA ou de seus clientes.", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "", "Comunicação prévia de 30 (trinta) dias, ressalvadas as campanhas e obrigações já assumidas perante terceiros.", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "", "A INTERMEDIADORA poderá rescindir o termo em caso de descumprimento de obrigação contratual, violação do Manual de Conduta, prática de ato ilícito ou conduta que cause dano à imagem ou reputação da INTERMEDIADORA ou de seus clientes.", margin, y, maxW, lh, pageH, margin);
   y += 3;
 
   // DISPOSIÇÕES GERAIS
   y = sectionHeader(doc, "6. Disposições Gerais", y, margin, pageW, pageH);
-  y = labelRow(doc, "Manual de Boas Práticas", ":", "Integra este instrumento e estabelece regras de observância pela INFLUENCIADORA.", margin, y, maxW, lh, pageH, margin);
-  y = labelRow(doc, "Vínculo", ":", "A presente parceria não estabelece vínculo empregatício, associativo ou de representação entre as PARTES.", margin, y, maxW, lh, pageH, margin);
-  y = labelRow(doc, "Confidencialidade", ":", "A INFLUENCIADORA deverá manter sigilo sobre informações comerciais, estratégicas, financeiras, contratuais, campanhas, briefings, dados de clientes e demais informações confidenciais a que tiver acesso.", margin, y, maxW, lh, pageH, margin);
-  y = labelRow(doc, "Foro", ":", "Comarca de Belo Horizonte/MG para dirimir eventuais controvérsias decorrentes deste termo.", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "Manual de Boas Práticas", "Integra este instrumento e estabelece regras de observância pela INFLUENCIADORA.", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "Vínculo", "A presente parceria não estabelece vínculo empregatício, associativo ou de representação entre as PARTES.", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "Confidencialidade", "A INFLUENCIADORA deverá manter sigilo sobre informações comerciais, estratégicas, financeiras, contratuais, campanhas, briefings, dados de clientes e demais informações confidenciais a que tiver acesso.", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "Foro", "Comarca de Belo Horizonte/MG para dirimir eventuais controvérsias decorrentes deste termo.", margin, y, maxW, lh, pageH, margin);
 
   // Signature block
   y += 10;
