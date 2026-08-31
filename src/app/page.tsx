@@ -1,5 +1,23 @@
 import Image from "next/image";
-import ContractLayout from "@/components/ContractLayout";
+import Link from "next/link";
+
+const MODELOS = [
+  {
+    href: "/comissionado",
+    nome: "Comissionado",
+    descricao: "Comissão entre 5% e 10% sobre o faturamento gerado por vendas orgânicas.",
+  },
+  {
+    href: "/permuta",
+    nome: "Permuta",
+    descricao: "Participação remunerada com produtos enviados pela marca, sem contraprestação financeira.",
+  },
+  {
+    href: "/cache-fixo",
+    nome: "Cachê Fixo",
+    descricao: "Valor fixo previamente acordado por campanha, apurado e pago mensalmente.",
+  },
+];
 
 export default function Home() {
   return (
@@ -23,14 +41,28 @@ export default function Home() {
             Documento Oficial
           </p>
           <h1 className="text-2xl sm:text-3xl font-bold text-[#16171C] tracking-tight">
-            Contrato de Licença e Cessão de Uso de Imagem
+            Termos de Parceria Comercial
           </h1>
           <p className="text-sm text-[#16171C]/45 max-w-xl">
-            Leia o contrato, preencha seus dados e assine eletronicamente.
+            Escolha o modelo de parceria correspondente para ler o termo, preencher os dados
+            e assinar eletronicamente.
           </p>
         </div>
 
-        <ContractLayout />
+        <div className="grid gap-4 sm:grid-cols-3">
+          {MODELOS.map((m) => (
+            <Link
+              key={m.href}
+              href={m.href}
+              className="group block bg-white border border-[#16171C]/10 rounded-2xl p-6 shadow-sm hover:border-[#EF27FF]/40 hover:shadow-md transition-all"
+            >
+              <p className="text-sm font-semibold text-[#16171C] mb-2 group-hover:text-[#EF27FF] transition-colors">
+                {m.nome}
+              </p>
+              <p className="text-xs text-[#16171C]/50 leading-relaxed">{m.descricao}</p>
+            </Link>
+          ))}
+        </div>
       </div>
 
       <footer className="border-t border-[#16171C]/8 py-8 text-center mt-4">

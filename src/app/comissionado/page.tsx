@@ -1,7 +1,7 @@
 import Image from "next/image";
-import ContractLayoutRestrito from "@/components/ContractLayoutRestrito";
+import ContractLayoutComissionado from "@/components/ContractLayoutComissionado";
 
-export default function TermosRestrito() {
+export default function Comissionado() {
   return (
     <main className="min-h-screen bg-white">
       <header className="border-b border-[#16171C]/8 py-5">
@@ -20,17 +20,17 @@ export default function TermosRestrito() {
       <div className="max-w-5xl mx-auto px-6 py-12 space-y-10">
         <div className="space-y-2">
           <p className="text-[10px] text-[#EF27FF] tracking-[0.25em] uppercase font-medium">
-            Documento Oficial
+            Documento Oficial · Modelo Comissionado
           </p>
           <h1 className="text-2xl sm:text-3xl font-bold text-[#16171C] tracking-tight">
-            Contrato de Licença e Cessão de Uso de Imagem
+            Termo de Parceria Comercial
           </h1>
           <p className="text-sm text-[#16171C]/45 max-w-xl">
-            Leia o contrato, preencha seus dados e assine eletronicamente.
+            Leia o termo, preencha seus dados e assine eletronicamente.
           </p>
         </div>
 
-        <ContractLayoutRestrito />
+        <ContractLayoutComissionado />
       </div>
 
       <footer className="border-t border-[#16171C]/8 py-8 text-center mt-4">
