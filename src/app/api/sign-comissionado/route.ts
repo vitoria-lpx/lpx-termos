@@ -91,12 +91,12 @@ export async function POST(request: NextRequest) {
     const pdfBuffer = Buffer.from(doc.output("arraybuffer"));
     console.log(`[PDF] gerado com sucesso — ${pdfBuffer.byteLength} bytes`);
 
-    const fileName = `contrato-lpx-${nome.trim().replace(/\s+/g, "-").toLowerCase()}.pdf`;
+    const fileName = `termo-lpx-comissionado-${nome.trim().replace(/\s+/g, "-").toLowerCase()}.pdf`;
 
     const recipients = ["leo@lpxmarketing.com", "vitoria@lpxmarketing.com", email.trim()];
     const emailPayload = {
       from: "LPX Marketing <noreply@lpxmarketing.com.br>",
-      subject: `Contrato de Uso de Imagem assinado — ${nome.trim()}`,
+      subject: `Termo de Parceria Comercial assinado — ${nome.trim()}`,
       html: buildEmailHtml({ nome: nome.trim(), dataHoraCompleta }),
       attachments: [{ filename: fileName, content: pdfBuffer }],
     };
@@ -115,7 +115,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ success: true });
   } catch (err) {
-    console.error("[sign-restrito]", err);
+    console.error("[sign-comissionado]", err);
     return NextResponse.json(
       { error: "Erro interno. Tente novamente." },
       { status: 500 }
@@ -210,46 +210,6 @@ function labelRow(
   return y;
 }
 
-// Renders "▸ Label: value" arrow bullet
-function arrowRow(
-  doc: jsPDF,
-  label: string,
-  value: string,
-  x: number,
-  y: number,
-  maxW: number,
-  lh: number,
-  pageH: number,
-  margin: number,
-  bulletChar: string = ">"
-): number {
-  if (y > pageH - 25) { doc.addPage(); y = margin; }
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(9);
-  doc.setTextColor(239, 39, 255);
-  doc.text(bulletChar, x, y);
-  doc.setTextColor(50, 50, 50);
-  let textStartX: number;
-  if (label) {
-    doc.setFont("helvetica", "bold");
-    const labelText = " " + label + ": ";
-    doc.text(labelText, x + 3, y);
-    textStartX = x + doc.getTextWidth(labelText) + 3;
-    doc.setFont("helvetica", "normal");
-  } else {
-    textStartX = x + 5;
-  }
-  const wrapped = doc.splitTextToSize(value, maxW - (textStartX - x));
-  doc.text(wrapped[0], textStartX, y);
-  y += lh;
-  for (let i = 1; i < wrapped.length; i++) {
-    if (y > pageH - 25) { doc.addPage(); y = margin; }
-    doc.text(wrapped[i], x, y);
-    y += lh;
-  }
-  return y;
-}
-
 function buildPDF(params: PDFParams) {
   const { nome, cpf, endereco, email, dataAssinatura, dataHoraCompleta, ip, assinatura } = params;
   const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
@@ -260,13 +220,11 @@ function buildPDF(params: PDFParams) {
   const lh = 5;
   let y = 0;
 
-  // Blue top bar
   doc.setFillColor(239, 39, 255);
   doc.rect(0, 0, pageW, 4, "F");
 
   y = 14;
 
-  // Document header
   doc.setFont("helvetica", "bold");
   doc.setFontSize(13);
   doc.setTextColor(20, 20, 20);
@@ -288,61 +246,62 @@ function buildPDF(params: PDFParams) {
   doc.setFont("helvetica", "bold");
   doc.setFontSize(11);
   doc.setTextColor(20, 20, 20);
-  doc.text("CONTRATO DE LICENÇA E CESSÃO DE USO DE IMAGEM", pageW / 2, y, { align: "center" });
+  doc.text("TERMO DE PARCERIA COMERCIAL — MODELO COMISSIONADO", pageW / 2, y, { align: "center" });
   y += 10;
 
   // PARTES
-  y = sectionHeader(doc, "1. Partes", y, margin, pageW, pageH);
-  y = labelRow(doc, "LICENCIADA", ":", "LPX Consultoria e Intermediação Ltda — CNPJ: 63.732.387/0001-90", margin, y, maxW, lh, pageH, margin);
-  y = labelRow(doc, "LICENCIANTE", ":", `${nome} • CPF: ${cpf} — Residente em: ${endereco}`, margin, y, maxW, lh, pageH, margin);
+  y = sectionHeader(doc, "Partes", y, margin, pageW, pageH);
+  y = labelRow(doc, "INTERMEDIADORA", ":", "LPX Consultoria e Intermediação Ltda — CNPJ: 63.732.387/0001-90", margin, y, maxW, lh, pageH, margin);
+  y = labelRow(doc, "INFLUENCIADORA", ":", `${nome} • CPF: ${cpf} — Residente em: ${endereco}`, margin, y, maxW, lh, pageH, margin);
   y += 3;
 
   // OBJETO E VIGÊNCIA
-  y = sectionHeader(doc, "2. Objeto e Vigência", y, margin, pageW, pageH);
-  y = arrowRow(doc, "O quê", "Imagem, voz, nome, likeness, fotos, vídeos, depoimentos e conteúdos audiovisuais produzidos pelo(a) LICENCIANTE.", margin, y, maxW, lh, pageH, margin);
-  y = arrowRow(doc, "Para quê", "Campanhas publicitárias, ações institucionais, promocionais, comerciais e digitais da LICENCIADA.", margin, y, maxW, lh, pageH, margin);
-  y = arrowRow(doc, "Onde", "Nacional e Internacional - todos os meios: mídias e plataformas digitais, redes sociais (Instagram, TikTok, Facebook, dentre outras), market places, websites, TV, rádio, impresso, streaming, e tecnologias futuras.", margin, y, maxW, lh, pageH, margin);
-  y = arrowRow(doc, "Prazo", "1 (um) ano, sem renovação automática, podendo ser renovado mediante novo acordo entre as partes. Rescisão mediante aviso escrito com 6 meses de antecedência.", margin, y, maxW, lh, pageH, margin);
-  y = arrowRow(doc, "Pós-vigência", "Materiais já publicados podem permanecer em circulação, portfólio e histórico de campanhas sem custo adicional, sendo vedada sua utilização pela LICENCIADA em novas campanhas, publicações inéditas ou mídia paga após o encerramento da vigência.", margin, y, maxW, lh, pageH, margin);
+  y = sectionHeader(doc, "1. Objeto e Vigência", y, margin, pageW, pageH);
+  y = labelRow(doc, "O quê", ":", "Estabelecer condições, obrigações e responsabilidades decorrentes da parceria comercial entre as PARTES, especialmente quanto à participação da INFLUENCIADORA em campanhas, ações publicitárias, promocionais, comerciais e institucionais intermediadas pela INTERMEDIADORA junto a marcas e parceiros comerciais.", margin, y, maxW, lh, pageH, margin);
+  y = labelRow(doc, "Prazo", ":", "2 anos, com renovação automática.", margin, y, maxW, lh, pageH, margin);
   y += 3;
 
-  // DIREITOS DA LICENCIADA — texto restrito (Uso e Edição com restrições)
-  y = sectionHeader(doc, "3. Direitos da Licenciada", y, margin, pageW, pageH);
-  y = labelRow(doc, "Uso e Edição", " —", "Editar, adaptar, cortar, reproduzir, sincronizar, impulsionar, legendar, traduzir, reutilizar e transformar materiais, desde que não altere o sentido original do conteúdo, não retire falas ou imagens de contexto, não crie mensagem diversa daquela aprovada pela Licenciante, nem prejudique sua imagem, reputação, posicionamento ou autenticidade. Qualquer remixagem, manipulação, edição substancial ou uso em contexto diferente do originalmente aprovado dependerá de autorização prévia e expressa da Licenciante. Em campanhas de mídia paga, dark posts e whitelisting, o conteúdo será utilizado exatamente como fornecido pelo(a) Licenciante, sendo permitida apenas a inclusão de legendas e cortes de duração, vedada qualquer outra edição, remixagem ou manipulação.", margin, y, maxW, lh, pageH, margin);
-  y = labelRow(doc, "Publicidade Digital", " —", "Campanhas patrocinadas, tráfego pago, dark posts, whitelisting, branded content e uso de IA para edição do material fornecido (sem autorização adicional), sendo vedada a criação de avatar digital, clonagem de voz, geração de novas falas ou qualquer conteúdo que simule a participação do(a) LICENCIANTE sem que tenha sido efetivamente produzido por ele(a), exceto mediante autorização prévia e expressa.", margin, y, maxW, lh, pageH, margin);
-  y = labelRow(doc, "Sublicenciamento", " —", "Grupo econômico, afiliadas, agências de publicidade, parceiros comerciais e prestadores de serviço.", margin, y, maxW, lh, pageH, margin);
-  y = labelRow(doc, "Envio de Produtos", " —", "A LICENCIADA enviará produtos à LICENCIANTE, a título de contrapartida, conforme acordado entre as partes.", margin, y, maxW, lh, pageH, margin);
+  // AUTORIZAÇÃO
+  y = sectionHeader(doc, "2. Autorização para Uso de Imagem, Voz, Nome e Conteúdo", y, margin, pageW, pageH);
+  y = txt(doc, "A INFLUENCIADORA autoriza a utilização de sua imagem, voz, nome, likeness, fotografias, vídeos, depoimentos e conteúdos audiovisuais produzidos no âmbito da parceria, em campanhas publicitárias, ações institucionais, promocionais, comerciais e digitais da INTERMEDIADORA.", margin, y, maxW, lh, pageH, margin);
+  y = txt(doc, "A autorização é válida em território nacional e internacional e abrange todos os meios, incluindo mídias e plataformas digitais, Instagram, TikTok, Facebook, marketplaces, websites e tecnologias futuras.", margin, y, maxW, lh, pageH, margin);
+  y = txt(doc, "A INTERMEDIADORA poderá editar, adaptar, cortar, reproduzir, sincronizar, legendar, traduzir, remixar, reutilizar os materiais, sem autorização adicional.", margin, y, maxW, lh, pageH, margin);
+  y = txt(doc, "A autorização compreende campanhas patrocinadas, tráfego pago, impulsionamento, dark posts, whitelisting e branded content, sem autorização adicional.", margin, y, maxW, lh, pageH, margin);
+  y = txt(doc, "Os direitos previstos nessa cláusula poderão ser licenciados às marcas contratantes, integrantes do grupo econômico, afiliadas, agências de publicidade, parceiros comerciais e prestadores de serviços.", margin, y, maxW, lh, pageH, margin);
+  y = txt(doc, "Os materiais já publicados poderão permanecer em circulação, integrar portfólios e históricos de campanhas, sem remuneração adicional.", margin, y, maxW, lh, pageH, margin);
   y += 3;
 
   // COMISSÃO
-  y = sectionHeader(doc, "4. Comissão", y, margin, pageW, pageH);
-  y = txt(doc, "O(A) LICENCIANTE fará jus a uma comissão entre 5% (cinco por cento) e 10% (dez por cento) sobre o faturamento mensal gerado por meio de suas indicações ou conteúdos vinculados à LICENCIADA, sendo o percentual aplicável variável conforme a marca escolhida pelo(a) LICENCIANTE, e previamente acordado entre as partes, observadas as seguintes condições:", margin, y, maxW, lh, pageH, margin);
-  y = arrowRow(doc, "", "O saque da comissão será liberado independentemente do valor acumulado no mês, mediante emissão de nota fiscal pelo(a) LICENCIANTE, não havendo valor mínimo exigido para liberação do pagamento.", margin, y, maxW, lh, pageH, margin);
-  y = arrowRow(doc, "", "Para fins desta cláusula, o saldo acumulado corresponderá exclusivamente às comissões decorrentes das vendas realizadas dentro do respectivo mês de apuração, não havendo soma ou compensação com valores de meses anteriores ou posteriores.", margin, y, maxW, lh, pageH, margin);
-  y = arrowRow(doc, "", "Para fins desta cláusula, considera-se comissionável apenas o faturamento gerado organicamente, isto é, decorrente do alcance natural dos posts publicados pelo(a) LICENCIANTE em seus próprios canais. Caso o conteúdo produzido seja veiculado em mídia paga (ads, impulsionamento, tráfego pago ou dark posts) pela LICENCIADA, a comissão não será devida sobre as vendas daí decorrentes.", margin, y, maxW, lh, pageH, margin);
+  y = sectionHeader(doc, "3. Comissão", y, margin, pageW, pageH);
+  y = txt(doc, "A INFLUENCIADORA fará jus a comissão entre 5% e 10% sobre o faturamento mensal apurado a partir das vendas realizadas mediante a utilização do cupom ou código promocional a ela vinculado, conforme percentual previamente acordado para cada marca ou campanha.", margin, y, maxW, lh, pageH, margin);
+  y = txt(doc, "Na ausência de percentual expressamente pactuado para determinada campanha, aplicar-se-á o percentual mínimo de 5% (cinco por cento).", margin, y, maxW, lh, pageH, margin);
+  y = txt(doc, "O saque da comissão será liberado quando o saldo do respectivo mês atingir R$ 100,00 (cem reais) ou quando o faturamento gerado pela INFLUENCIADORA no respectivo mês superar R$ 1.000,00 (mil reais).", margin, y, maxW, lh, pageH, margin);
+  y = txt(doc, "O saldo será apurado exclusivamente sobre as vendas realizadas no respectivo mês, sem soma ou compensação com meses anteriores ou posteriores.", margin, y, maxW, lh, pageH, margin);
+  y = txt(doc, "Considera-se comissionável apenas o faturamento orgânico, gerado pelo alcance natural dos posts publicados pela INFLUENCIADORA em seus próprios canais. Não haverá comissão sobre vendas oriundas de conteúdo veiculado em mídia paga (ads, impulsionamento, tráfego pago ou dark posts) pela INTERMEDIADORA.", margin, y, maxW, lh, pageH, margin);
+  y = txt(doc, "Atingido o patamar mínimo, a INFLUENCIADORA deverá emitir a respectiva nota fiscal. A não emissão será interpretada como recusa da comissão, desobrigando a INTERMEDIADORA do respectivo pagamento até que a emissão seja regularizada.", margin, y, maxW, lh, pageH, margin);
+  y = txt(doc, "Prazo de pagamento: 5 dias úteis, a partir da emissão da nota fiscal.", margin, y, maxW, lh, pageH, margin);
+  y = txt(doc, "A INFLUENCIADORA declara que possui CNPJ ativo e compatível com a prestação dos serviços (CNAE 17.06.01 – Propaganda e Publicidade, inclusive Promoção de Vendas), comprometendo-se a manter regularidade fiscal durante a vigência da parceria.", margin, y, maxW, lh, pageH, margin);
   y += 3;
 
-  // DECLARAÇÕES E GARANTIAS
-  y = sectionHeader(doc, "5. Declarações e Garantias do(a) Licenciante", y, margin, pageW, pageH);
-  y = arrowRow(doc, "", "Possui plena capacidade e legitimidade para celebrar este contrato.", margin, y, maxW, lh, pageH, margin, "•");
-  y = arrowRow(doc, "", "Não possui exclusividade ou impedimento que restrinja os direitos aqui concedidos.", margin, y, maxW, lh, pageH, margin, "•");
-  y = arrowRow(doc, "", "Os materiais fornecidos não violam direitos autorais ou direitos de terceiros.", margin, y, maxW, lh, pageH, margin, "•");
-  y = arrowRow(doc, "", "Responde integralmente por reclamações judiciais ou extrajudiciais decorrentes dos materiais fornecidos.", margin, y, maxW, lh, pageH, margin, "•");
-  y = arrowRow(doc, "", "Eventual divulgação de material pelo(a) LICENCIANTE ocorrerá por mera liberalidade, não podendo a LICENCIADA exigir qualquer publicação, salvo ajuste expresso por escrito entre as PARTES.", margin, y, maxW, lh, pageH, margin, "•");
-  y = arrowRow(doc, "", "Caso a LICENCIANTE solicite a interrupção de uso de sua imagem ou conteúdos, a LICENCIADA cessará novas divulgações em até 30 (trinta) dias, permanecendo válidos os materiais já publicados e as campanhas em andamento até sua conclusão.", margin, y, maxW, lh, pageH, margin, "•");
+  // RESPONSABILIDADES
+  y = sectionHeader(doc, "4. Responsabilidades", y, margin, pageW, pageH);
+  y = txt(doc, "A INFLUENCIADORA se compromete a observar a legislação aplicável às suas atividades, incluindo o Código de Defesa do Consumidor e as diretrizes do CONAR; bem como a observar o Manual de Boas Práticas (anexo).", margin, y, maxW, lh, pageH, margin);
+  y = txt(doc, "A INFLUENCIADORA declara que (i) não possui exclusividade ou impedimento que restrinja os direitos ora concedidos, e (ii) os conteúdos por ela produzidos ou fornecidos não violam direitos autorais ou quaisquer outros direitos de terceiros.", margin, y, maxW, lh, pageH, margin);
+  y = txt(doc, "A INFLUENCIADORA é responsável pelos atos, declarações e conteúdos que produzir ou divulgar, respondendo por reclamações, notificações e demandas judiciais ou extrajudiciais, bem como pelos prejuízos deles decorrentes.", margin, y, maxW, lh, pageH, margin);
   y += 3;
 
-  // RESPONSABILIDADES ADICIONAIS
-  y = sectionHeader(doc, "6. Responsabilidades Adicionais", y, margin, pageW, pageH);
-  y = labelRow(doc, "Cláusula Moral", " —", "A LICENCIADA pode rescindir imediatamente caso o(a) LICENCIANTE pratique atos que afetem sua reputação: escândalos, crimes ou condutas ilícitas.", margin, y, maxW, lh, pageH, margin);
-  y = labelRow(doc, "Indenização", " —", "O(A) LICENCIANTE indeniza a LICENCIADA por violação de direitos, falsidade de declarações, uso indevido de conteúdo e descumprimento contratual.", margin, y, maxW, lh, pageH, margin);
-  y = labelRow(doc, "Confidencialidade", " —", "O(A) LICENCIANTE mantém sigilo sobre informações, estratégias, campanhas e dados da LICENCIADA, sob pena de responsabilização.", margin, y, maxW, lh, pageH, margin);
+  // RESCISÃO
+  y = sectionHeader(doc, "5. Rescisão", y, margin, pageW, pageH);
+  y = txt(doc, "Comunicação prévia de 30 (trinta) dias, ressalvadas as campanhas e obrigações já assumidas perante terceiros.", margin, y, maxW, lh, pageH, margin);
+  y = txt(doc, "A INTERMEDIADORA poderá rescindir o termo em caso de descumprimento de obrigação contratual, violação do Manual de Conduta, prática de ato ilícito ou conduta que cause dano à imagem ou reputação da INTERMEDIADORA ou de seus clientes.", margin, y, maxW, lh, pageH, margin);
   y += 3;
 
   // DISPOSIÇÕES GERAIS
-  y = sectionHeader(doc, "7. Disposições Gerais", y, margin, pageW, pageH);
-  y = labelRow(doc, "Vínculo", ":", "Este contrato NÃO estabelece vínculo empregatício, societário ou representativo entre as partes.", margin, y, maxW, lh, pageH, margin);
-  y = labelRow(doc, "Foro", ":", "Comarca de Belo Horizonte/MG para dirimir quaisquer controvérsias decorrentes deste contrato.", margin, y, maxW, lh, pageH, margin);
+  y = sectionHeader(doc, "6. Disposições Gerais", y, margin, pageW, pageH);
+  y = labelRow(doc, "Manual de Boas Práticas", ":", "Integra este instrumento e estabelece regras de observância pela INFLUENCIADORA.", margin, y, maxW, lh, pageH, margin);
+  y = labelRow(doc, "Vínculo", ":", "A presente parceria não estabelece vínculo empregatício, associativo ou de representação entre as PARTES.", margin, y, maxW, lh, pageH, margin);
+  y = labelRow(doc, "Confidencialidade", ":", "A INFLUENCIADORA deverá manter sigilo sobre informações comerciais, estratégicas, financeiras, contratuais, campanhas, briefings, dados de clientes e demais informações confidenciais a que tiver acesso.", margin, y, maxW, lh, pageH, margin);
+  y = labelRow(doc, "Foro", ":", "Comarca de Belo Horizonte/MG para dirimir eventuais controvérsias decorrentes deste termo.", margin, y, maxW, lh, pageH, margin);
 
   // Signature block
   y += 10;
@@ -360,14 +319,14 @@ function buildPDF(params: PDFParams) {
   const imgH = 22;
   const baseY = y;
 
-  // LICENCIADA column
+  // INTERMEDIADORA column
   doc.setDrawColor(180, 180, 180);
   doc.setLineWidth(0.3);
   doc.line(col1X, baseY + imgH, col1X + colW, baseY + imgH);
   doc.setFont("helvetica", "bold");
   doc.setFontSize(8);
   doc.setTextColor(80, 80, 80);
-  doc.text("LICENCIADA", col1X, baseY + imgH + 5);
+  doc.text("INTERMEDIADORA", col1X, baseY + imgH + 5);
   doc.setFont("helvetica", "normal");
   doc.setFontSize(8.5);
   doc.setTextColor(30, 30, 30);
@@ -376,7 +335,7 @@ function buildPDF(params: PDFParams) {
   doc.setTextColor(100, 100, 100);
   doc.text("CNPJ: 63.732.387/0001-90", col1X, baseY + imgH + 13.5);
 
-  // LICENCIANTE column — with manuscript signature
+  // INFLUENCIADORA column — with manuscript signature
   if (assinatura) {
     try {
       doc.addImage(assinatura, "PNG", col2X, baseY, colW, imgH);
@@ -389,7 +348,7 @@ function buildPDF(params: PDFParams) {
   doc.setFont("helvetica", "bold");
   doc.setFontSize(8);
   doc.setTextColor(80, 80, 80);
-  doc.text("LICENCIANTE", col2X, baseY + imgH + 5);
+  doc.text("INFLUENCIADORA", col2X, baseY + imgH + 5);
   doc.setFont("helvetica", "normal");
   doc.setFontSize(8.5);
   doc.setTextColor(30, 30, 30);
@@ -474,15 +433,15 @@ function buildEmailHtml({ nome, dataHoraCompleta }: { nome: string; dataHoraComp
       <img src="https://lpx-termos.vercel.app/LPXlogonova2.png" alt="LPX Marketing" class="logo-img" />
     </div>
     <div class="body">
-      <h2>Contrato Assinado com Sucesso</h2>
+      <h2>Termo de Parceria Assinado com Sucesso</h2>
       <p>Olá, <strong>${nomeSafe}</strong>!</p>
-      <p>O Contrato de Licença e Cessão de Uso de Imagem foi registrado com sucesso. O documento completo em PDF está anexado a este e-mail.</p>
+      <p>O Termo de Parceria Comercial (Modelo Comissionado) foi registrado com sucesso. O documento completo em PDF está anexado a este e-mail.</p>
       <div class="card">
         <p><strong>Data e hora da assinatura:</strong><br>${dataHoraCompleta}</p>
       </div>
       <ul class="checklist">
         <li><span class="check">✓</span> Assinatura registrada com sucesso</li>
-        <li><span class="check">✓</span> Contrato arquivado com segurança</li>
+        <li><span class="check">✓</span> Termo arquivado com segurança</li>
         <li><span class="check">✓</span> Documento PDF em anexo</li>
       </ul>
       <p>Em caso de dúvidas, entre em contato pelo e-mail <a href="mailto:agencia@lpxmarketing.com">agencia@lpxmarketing.com</a>.</p>
