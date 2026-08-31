@@ -35,7 +35,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
   );
 }
 
-function Arrow({ label, children }: { label?: string; children: React.ReactNode }) {
+function Arrow({ label, children }: { label?: React.ReactNode; children: React.ReactNode }) {
   return (
     <div className="flex gap-2.5">
       <span className="text-[#EF27FF] flex-shrink-0 mt-0.5 text-xs font-bold">▸</span>
@@ -88,126 +88,124 @@ function ContractContent() {
         </Section>
 
         <Section title="2. Autorização para Uso de Imagem, Voz, Nome e Conteúdo">
-          <p>
+          <Arrow>
             A INFLUENCIADORA autoriza a utilização de sua imagem, voz, nome, likeness,
             fotografias, vídeos, depoimentos e conteúdos audiovisuais produzidos no âmbito da
             parceria, em campanhas publicitárias, ações institucionais, promocionais,
             comerciais e digitais da INTERMEDIADORA.
-          </p>
-          <p>
+          </Arrow>
+          <Arrow>
             A autorização é válida em território nacional e internacional e abrange todos os
             meios, incluindo mídias e plataformas digitais, Instagram, TikTok, Facebook,
             marketplaces, websites e tecnologias futuras.
-          </p>
-          <p>
+          </Arrow>
+          <Arrow>
             A INTERMEDIADORA poderá editar, adaptar, cortar, reproduzir, sincronizar, legendar,
             traduzir, remixar, reutilizar os materiais, sem autorização adicional.
-          </p>
-          <p>
+          </Arrow>
+          <Arrow>
             A autorização compreende campanhas patrocinadas, tráfego pago, impulsionamento,
             dark posts, whitelisting e branded content, sem autorização adicional.
-          </p>
-          <p>
+          </Arrow>
+          <Arrow>
             Os direitos previstos nessa cláusula poderão ser licenciados às marcas
             contratantes, integrantes do grupo econômico, afiliadas, agências de publicidade,
             parceiros comerciais e prestadores de serviços.
-          </p>
-          <p>
+          </Arrow>
+          <Arrow>
             Os materiais já publicados poderão permanecer em circulação, integrar portfólios e
             históricos de campanhas, sem remuneração adicional.
-          </p>
+          </Arrow>
         </Section>
 
         <Section title="3. Comissão">
-          <p>
+          <Arrow>
             A INFLUENCIADORA fará jus a comissão entre 5% e 10% sobre o faturamento mensal
             apurado a partir das vendas realizadas mediante a utilização do cupom ou código
             promocional a ela vinculado, conforme percentual previamente acordado para cada
             marca ou campanha.
-          </p>
-          <p>
+          </Arrow>
+          <Arrow>
             Na ausência de percentual expressamente pactuado para determinada campanha,
             aplicar-se-á o percentual mínimo de 5% (cinco por cento).
-          </p>
-          <p>
+          </Arrow>
+          <Arrow>
             O saque da comissão será liberado quando o saldo do respectivo mês atingir R$
             100,00 (cem reais) ou quando o faturamento gerado pela INFLUENCIADORA no respectivo
             mês superar R$ 1.000,00 (mil reais).
-          </p>
-          <p>
+          </Arrow>
+          <Arrow>
             O saldo será apurado exclusivamente sobre as vendas realizadas no respectivo mês,
             sem soma ou compensação com meses anteriores ou posteriores.
-          </p>
-          <p>
+          </Arrow>
+          <Arrow>
             Considera-se comissionável apenas o faturamento orgânico, gerado pelo alcance
             natural dos posts publicados pela INFLUENCIADORA em seus próprios canais. Não
             haverá comissão sobre vendas oriundas de conteúdo veiculado em mídia paga (ads,
             impulsionamento, tráfego pago ou dark posts) pela INTERMEDIADORA.
-          </p>
-          <p>
+          </Arrow>
+          <Arrow>
             Atingido o patamar mínimo, a INFLUENCIADORA deverá emitir a respectiva nota fiscal.
             A não emissão será interpretada como recusa da comissão, desobrigando a
             INTERMEDIADORA do respectivo pagamento até que a emissão seja regularizada.
-          </p>
-          <p>
+          </Arrow>
+          <Arrow>
             Prazo de pagamento: 5 dias úteis, a partir da emissão da nota fiscal.
-          </p>
-          <p>
+          </Arrow>
+          <Arrow>
             A INFLUENCIADORA declara que possui CNPJ ativo e compatível com a prestação dos
             serviços (CNAE 17.06.01 – Propaganda e Publicidade, inclusive Promoção de Vendas),
             comprometendo-se a manter regularidade fiscal durante a vigência da parceria.
-          </p>
+          </Arrow>
         </Section>
 
         <Section title="4. Responsabilidades">
-          <p>
+          <Arrow>
             A INFLUENCIADORA se compromete a observar a legislação aplicável às suas
             atividades, incluindo o Código de Defesa do Consumidor e as diretrizes do CONAR;
             bem como a observar o <ManualLink /> (anexo).
-          </p>
-          <p>
+          </Arrow>
+          <Arrow>
             A INFLUENCIADORA declara que (i) não possui exclusividade ou impedimento que
             restrinja os direitos ora concedidos, e (ii) os conteúdos por ela produzidos ou
             fornecidos não violam direitos autorais ou quaisquer outros direitos de terceiros.
-          </p>
-          <p>
+          </Arrow>
+          <Arrow>
             A INFLUENCIADORA é responsável pelos atos, declarações e conteúdos que produzir ou
             divulgar, respondendo por reclamações, notificações e demandas judiciais ou
             extrajudiciais, bem como pelos prejuízos deles decorrentes.
-          </p>
+          </Arrow>
         </Section>
 
         <Section title="5. Rescisão">
-          <p>
+          <Arrow>
             Comunicação prévia de 30 (trinta) dias, ressalvadas as campanhas e obrigações já
             assumidas perante terceiros.
-          </p>
-          <p>
+          </Arrow>
+          <Arrow>
             A INTERMEDIADORA poderá rescindir o termo em caso de descumprimento de obrigação
             contratual, violação do Manual de Conduta, prática de ato ilícito ou conduta que
             cause dano à imagem ou reputação da INTERMEDIADORA ou de seus clientes.
-          </p>
+          </Arrow>
         </Section>
 
         <Section title="6. Disposições Gerais">
-          <p>
-            <strong className="text-[#16171C]/70"><ManualLink />:</strong> Integra este
-            instrumento e estabelece regras de observância pela INFLUENCIADORA.
-          </p>
-          <p>
-            <strong className="text-[#16171C]/70">Vínculo:</strong> A presente parceria não
-            estabelece vínculo empregatício, associativo ou de representação entre as PARTES.
-          </p>
-          <p>
-            <strong className="text-[#16171C]/70">Confidencialidade:</strong> A INFLUENCIADORA
-            deverá manter sigilo sobre informações comerciais, estratégicas, financeiras,
-            contratuais, campanhas, briefings, dados de clientes e demais informações
-            confidenciais a que tiver acesso.
-          </p>
-          <p>
-            <strong className="text-[#16171C]/70">Foro:</strong> Comarca de Belo Horizonte/MG
-            para dirimir eventuais controvérsias decorrentes deste termo.
-          </p>
+          <Arrow label={<ManualLink />}>
+            Integra este instrumento e estabelece regras de observância pela INFLUENCIADORA.
+          </Arrow>
+          <Arrow label="Vínculo">
+            A presente parceria não estabelece vínculo empregatício, associativo ou de
+            representação entre as PARTES.
+          </Arrow>
+          <Arrow label="Confidencialidade">
+            A INFLUENCIADORA deverá manter sigilo sobre informações comerciais, estratégicas,
+            financeiras, contratuais, campanhas, briefings, dados de clientes e demais
+            informações confidenciais a que tiver acesso.
+          </Arrow>
+          <Arrow label="Foro">
+            Comarca de Belo Horizonte/MG para dirimir eventuais controvérsias decorrentes deste
+            termo.
+          </Arrow>
         </Section>
 
         <div className="border-t border-[#16171C]/8 pt-8 space-y-5">
