@@ -88,7 +88,7 @@ function ContractContent() {
             e integrarão as obrigações da INFLUENCIADORA.
           </Arrow>
           <Arrow label="Prazo">
-            2 anos, com renovação automática.
+            14 meses, com renovação automática.
           </Arrow>
         </Section>
 
