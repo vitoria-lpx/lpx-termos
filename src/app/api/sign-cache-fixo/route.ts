@@ -279,7 +279,7 @@ function buildPDF(params: PDFParams) {
   y = sectionHeader(doc, "1. Objeto e Vigência", y, margin, pageW, pageH);
   y = arrowRow(doc, "O quê", "Estabelecer condições, obrigações e responsabilidades decorrentes da parceria comercial entre as PARTES, especialmente quanto à participação da INFLUENCIADORA em campanhas, ações publicitárias, promocionais, comerciais e institucionais intermediadas pela INTERMEDIADORA junto a marcas e parceiros comerciais.", margin, y, maxW, lh, pageH, margin);
   y = arrowRow(doc, "", "As condições específicas de cada campanha, incluindo conteúdos, formatos, datas, horários, canais e demais requisitos, serão previamente acordadas entre as PARTES e integrarão as obrigações da INFLUENCIADORA.", margin, y, maxW, lh, pageH, margin);
-  y = arrowRow(doc, "Prazo", "2 anos, com renovação automática.", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "Prazo", "14 meses, com renovação automática.", margin, y, maxW, lh, pageH, margin);
   y += 3;
 
   // AUTORIZAÇÃO
