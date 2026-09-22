@@ -146,8 +146,15 @@ function ContractContent() {
           </Arrow>
           <Arrow>
             A INFLUENCIADORA declara que possui CNPJ ativo e compatível com a prestação dos
-            serviços (CNAE 17.06.01 – Propaganda e Publicidade, inclusive Promoção de Vendas),
-            comprometendo-se a manter regularidade fiscal durante a vigência da parceria.
+            serviços, comprometendo-se a manter regularidade fiscal durante a vigência da
+            parceria.
+          </Arrow>
+          <Arrow>
+            Para as notas fiscais destinadas à INTERMEDIADORA, a INFLUENCIADORA deverá observar
+            a seguinte orientação: (i) caso seja optante do MEI, CNAE 7319-0/02 – Promoção de
+            Vendas, sob o código de tributação nacional 17.06; ou (ii) caso seja ME, CNAE
+            7319-0/03 – Marketing Direto ou 7311-4/00 – Agências de Publicidade, sob o código de
+            tributação nacional 17.06.
           </Arrow>
         </Section>
 

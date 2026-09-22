@@ -298,7 +298,8 @@ function buildPDF(params: PDFParams) {
   y = arrowRow(doc, "", "A remuneração será apurada mensalmente, considerando as campanhas e conteúdos efetivamente realizados pela INFLUENCIADORA no mês anterior, conforme as condições previamente acordadas para cada campanha.", margin, y, maxW, lh, pageH, margin);
   y = arrowRow(doc, "", "A INFLUENCIADORA deverá emitir nota fiscal no prazo de 7 dias. A não emissão será interpretada como recusa da comissão, desobrigando a INTERMEDIADORA do respectivo pagamento até que a emissão seja regularizada.", margin, y, maxW, lh, pageH, margin);
   y = arrowRow(doc, "", "Prazo de pagamento: 5 dias úteis, a partir da emissão da nota fiscal, desde que cumpridas as obrigações relativas às entregas acordadas.", margin, y, maxW, lh, pageH, margin);
-  y = arrowRow(doc, "", "A INFLUENCIADORA declara que possui CNPJ ativo e compatível com a prestação dos serviços (CNAE 17.06.01 – Propaganda e Publicidade, inclusive Promoção de Vendas), comprometendo-se a manter regularidade fiscal durante a vigência da parceria.", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "", "A INFLUENCIADORA declara que possui CNPJ ativo e compatível com a prestação dos serviços, comprometendo-se a manter regularidade fiscal durante a vigência da parceria.", margin, y, maxW, lh, pageH, margin);
+  y = arrowRow(doc, "", "Para as notas fiscais destinadas à INTERMEDIADORA, a INFLUENCIADORA deverá observar a seguinte orientação: (i) caso seja optante do MEI, CNAE 7319-0/02 – Promoção de Vendas, sob o código de tributação nacional 17.06; ou (ii) caso seja ME, CNAE 7319-0/03 – Marketing Direto ou 7311-4/00 – Agências de Publicidade, sob o código de tributação nacional 17.06.", margin, y, maxW, lh, pageH, margin);
   y += 3;
 
   // RESPONSABILIDADES
